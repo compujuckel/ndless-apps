@@ -63,7 +63,7 @@ class AuthorController extends \BaseController {
 					->first()
 			)
 			->withProjects(
-				Author::find($id)->projects
+				Author::findOrFail($id)->projects
 			);
 	}
 
