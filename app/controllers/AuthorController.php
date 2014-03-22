@@ -23,7 +23,7 @@ class AuthorController extends \BaseController {
 					->groupBy('author')
 					->orderBy('name')
 					->get()
-				);
+			);
 	}
 
 	/**
@@ -54,7 +54,17 @@ class AuthorController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return Author::findOrFail($id)->toJson();
+		return View::make('author.show')
+			->withAuthor(
+				DB::table('authors')
+					->select(DB::raw('count(project) as count, name'))
+					->where('id', '=', $id)
+					->join('project_authors', 'project_authors.author', '=', 'authors.id')
+					->first()
+			)
+			->withProjects(
+				Author::find($id)->projects
+			);
 	}
 
 	/**

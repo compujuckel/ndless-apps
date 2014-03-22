@@ -18,7 +18,7 @@
 		<p>
 			<small>
 				@foreach($project->authors as $author)
-				<span class="label label-default">{{{ $author->name }}}</span>
+				<a href="/authors/{{ $author->id }}" class="label label-default">{{{ $author->name }}}</a>
 				@endforeach
 			</small>
 		</p>

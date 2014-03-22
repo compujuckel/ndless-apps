@@ -5,6 +5,6 @@ class Author extends Eloquent {
 	
 	public function projects()
 	{
-		return $this->belongsToMany('Project','project_authors','project','author');
+		return $this->belongsToMany('Project','project_authors','author','project');
 	}
 }

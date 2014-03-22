@@ -5,6 +5,6 @@ class Ndless extends Eloquent {
 	
 	public function projects()
 	{
-		return $this->belongsToMany('Project', 'compatibility', 'project', 'version');
+		return $this->belongsToMany('Project', 'compatibility', 'version', 'project');
 	}
 }
