@@ -26,6 +26,7 @@
 				<div class="collapse navbar-collapse" id="navbar">
 					<ul class="nav navbar-nav">
 						@yield('navbar')
+						<li><a href="/authors">Authors</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#"><i class="fa fa-bug"></i> Report bug</a></li>
