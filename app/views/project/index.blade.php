@@ -133,7 +133,7 @@
 	<div class="section-two">
 		<a class="anchor" id="all"></a>
 		<div class="container" id="project-list">
-			<h2><i class="fa fa-folder-open"></i> All Projects</h2>
+			<h2><i class="fa fa-folder-open"></i> All Apps</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
 					<div class="input-group">

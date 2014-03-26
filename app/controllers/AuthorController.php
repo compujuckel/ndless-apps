@@ -9,12 +9,6 @@ class AuthorController extends \BaseController {
 	 */
 	public function index()
 	{
-		//return Author::all()->toJson();
-		/*return View::make('author.index')
-			->withAuthors(
-				Author::all()
-					->sortBy('name')
-			);*/
 		return View::make('author.index')
 			->withAuthors(
 				DB::table('authors')

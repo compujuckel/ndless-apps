@@ -10,7 +10,7 @@ class Project extends Eloquent {
 	
 	public function versions()
 	{
-		return $this->belongsToMany('Ndless','compatibility','project','version');
+		return $this->belongsToMany('Ndless','compatibility','project','version')->orderBy('version');
 	}
 	
 	function getClassicFormattedAttribute()
