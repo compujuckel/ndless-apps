@@ -20,6 +20,7 @@ Route::get('logout', array('before' => 'csrf', function()
 }));
 
 Route::controller('login','LoginController');
+Route::controller('account','AccountController');
 
 Route::resource('projects','ProjectController');
 Route::resource('authors','AuthorController');

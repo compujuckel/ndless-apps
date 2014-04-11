@@ -34,7 +34,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{{ Auth::user()->name }}} <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/settings"><i class="fa fa-cog"></i> Settings</a></li>
+								<li><a href="/account"><i class="fa fa-cog"></i> Settings</a></li>
 								<li><a href="/logout?_token={{ csrf_token() }}"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
 						</li>

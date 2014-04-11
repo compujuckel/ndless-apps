@@ -19,7 +19,6 @@ class ProjectController extends \BaseController {
 	 */
 	public function index()
 	{
-		//return Project::with('authors','versions')->get()->toJson();
 		return View::make('project.index')
 			->withProjects(
 				Project::with('authors','versions')
