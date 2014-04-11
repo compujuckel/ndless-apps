@@ -160,6 +160,9 @@
 							<li><a href="#" class="sort-stars"><i class="fa fa-star fa-fw"></i> Stars</a></li>
 						</ul>
 					</div>
+					@if(Auth::check() && Auth::user()->editor)
+					<a href="/projects/create" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
+					@endif
 				</div>
 			</form>
 			<br />

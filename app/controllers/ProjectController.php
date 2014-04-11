@@ -27,6 +27,54 @@ class ProjectController extends \BaseController {
 					->sortBy('name')
 			);
 	}
+	
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return View::make('project.create');
+	}
+	
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$rules = array(
+			'name' => 'required',
+			'description' => 'required',
+			'website' => 'required|url',
+			'tiplanet' => 'required|numeric',
+			'ticalc' => 'required|numeric',
+		);
+		
+		$input = Input::all();
+		$validator = Validator::make($input,$rules);
+		
+		if($validator->fails())
+		{
+			return Redirect::to("/projects/create")->withErrors($validator)->withInput();
+		}
+		
+		$project = new Project;
+		
+		$project->name = $input['name'];
+		$project->description = $input['description'];
+		$project->website = $input['website'];
+		$project->tiplanet = $input['tiplanet'];
+		$project->ticalc = $input['ticalc'];
+		$project->classic = Input::has('classic');
+		$project->cx = Input::has('cx');
+		
+		$project->save();
+		
+		return Redirect::to("/projects/{$project->id}/edit");
+	}
 
 	/**
 	 * Display the specified resource.
@@ -194,6 +242,16 @@ class ProjectController extends \BaseController {
 			return Redirect::to("/projects/$id/edit");
 		}
 	}
-
+	
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		
+	}
 
 }
