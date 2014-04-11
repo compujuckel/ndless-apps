@@ -50,9 +50,29 @@
 								</label>
 							</div>
 							<button type="submit" class="btn btn-primary" name="edit" value="app"><i class="fa fa-check"></i> Save changes</button>
+							<a class="btn btn-danger" data-toggle="modal" data-target=".delete-modal"><i class="fa fa-trash-o"></i> Delete</a>
 						</div>
 					</div>
 				</form>
+				<div class="modal fade delete-modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4><i class="fa fa-trash-o"></i> Delete {{{ $project->name }}}</h4>
+							</div>
+							<div class="modal-body">
+								Are you sure you want to delete this app?
+							</div>
+							<div class="modal-footer">
+								<form method="POST" action="/projects/{{ $project->id }}">
+									<input type="hidden" name="_method" value="DELETE">
+									<button type="submit" class="btn btn-danger">Yes</button>
+									<a href="#" class="btn btn-default" data-dismiss="modal">No</a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-6">
 				<form role="form" method="POST" action="/projects/{{ $project->id }}">

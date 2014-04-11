@@ -251,7 +251,9 @@ class ProjectController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		Project::destroy($id);
 		
+		return Redirect::to("/projects");
 	}
 
 }
