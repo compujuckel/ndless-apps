@@ -27,7 +27,7 @@ class AuthorController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('author.create');
 	}
 
 	/**
@@ -37,7 +37,25 @@ class AuthorController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = array(
+			'name' => 'required'
+		);
+		
+		$input = Input::all();
+		$validator = Validator::make($input,$rules);
+		
+		if($validator->fails())
+		{
+			return Redirect::to("/projects/create")->withErrors($validator)->withInput();
+		}
+		
+		$author = new Author;
+		
+		$author->name = $input['name'];
+		
+		$author->save();
+		
+		return Redirect::to("/authors/{$author->id}");
 	}
 
 	/**

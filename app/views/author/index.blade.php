@@ -26,6 +26,9 @@
 							<li><a href="#" class="sort-contributions"><i class="fa fa-code fa-fw"></i> Contributions</a></li>
 						</ul>
 					</div>
+					@if(Auth::check() && Auth::user()->editor)
+					<a href="/authors/create" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
+					@endif
 				</div>
 			</form>
 			<br />

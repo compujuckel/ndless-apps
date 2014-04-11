@@ -2,12 +2,11 @@
 
 @section('content')
 	<div class="container">
-		<h1>Create new app</h1>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<form role="form" method="POST" action="/projects">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Edit app</div>
+						<div class="panel-heading">Create app</div>
 						<div class="panel-body">
 							@if($errors->any())
 								<div class="alert alert-danger">{{{ $errors->first() }}}</div>
