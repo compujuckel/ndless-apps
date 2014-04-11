@@ -13,10 +13,7 @@ class ProjectAuthorsOnDeleteChanges extends Migration {
 	public function up()
 	{
 		Schema::table('project_authors', function($table)
-		{
-			$table->dropForeign('project_authors_author_foreign');
-			$table->foreign('author')->references('id')->on('authors')->onDelete('cascade');
-			
+		{		
 			$table->dropForeign('project_authors_project_foreign');
 			$table->foreign('project')->references('id')->on('projects')->onDelete('cascade');
 		});
@@ -31,9 +28,6 @@ class ProjectAuthorsOnDeleteChanges extends Migration {
 	{
 		Schema::table('project_authors', function($table)
 		{
-			$table->dropForeign('project_authors_author_foreign');
-			$table->foreign('author')->references('id')->on('authors');
-			
 			$table->dropForeign('project_authors_project_foreign');
 			$table->foreign('project')->references('id')->on('projects');
 		});

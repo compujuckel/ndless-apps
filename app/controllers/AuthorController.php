@@ -56,7 +56,7 @@ class AuthorController extends \BaseController {
 		
 		if($validator->fails())
 		{
-			return Redirect::to("/projects/create")->withErrors($validator)->withInput();
+			return Redirect::to("/authors/create")->withErrors($validator)->withInput();
 		}
 		
 		$author = new Author;
@@ -79,7 +79,7 @@ class AuthorController extends \BaseController {
 		return View::make('author.show')
 			->withAuthor(
 				DB::table('authors')
-					->select(DB::raw('count(project) as count, name'))
+					->select(DB::raw('count(project) as count, name, id'))
 					->where('id', '=', $id)
 					->join('project_authors', 'project_authors.author', '=', 'authors.id')
 					->first()
@@ -97,7 +97,10 @@ class AuthorController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return View::make('author.edit')
+			->withAuthor(
+				Author::findOrFail($id)
+			);
 	}
 
 	/**
@@ -108,7 +111,25 @@ class AuthorController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = array(
+			'name' => 'required'
+		);
+		
+		$input = Input::all();
+		$validator = Validator::make($input,$rules);
+		
+		if($validator->fails())
+		{
+			return Redirect::to("/authors/$id")->withErrors($validator);
+		}
+		
+		$author = Author::findOrFail($id);
+		
+		$author->name = $input['name'];
+		
+		$author->save();
+		
+		return Redirect::to("/authors/{$author->id}");
 	}
 
 	/**
@@ -119,7 +140,9 @@ class AuthorController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Author::destroy($id);
+		
+		return Redirect::to('/authors');
 	}
 
 }
