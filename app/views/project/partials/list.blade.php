@@ -31,7 +31,7 @@
 				<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
 				@endif
 				@if($project->download_link)
-				<a href="{{ $project->download_link }}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
+				<a href="{{{ $project->download_link }}}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
 				@else
 				<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</button>
 				@endif

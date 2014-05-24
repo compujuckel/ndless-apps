@@ -25,6 +25,10 @@
 								<label for="inputWebsite">Website</label>
 								<input class="form-control" type="text" id="inputWebsite" name="website" value="{{{ $project->website }}}">
 							</div>
+							<div class="form-group">
+								<label for="inputScreenshot">Screenshot URL</label>
+								<input class="form-control" type="text" id="inputScreenshot" name="screenshot" value="{{{ $project->screenshot }}}">
+							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">

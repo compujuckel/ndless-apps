@@ -17,65 +17,13 @@
 		<div class="container">
 			<h2><i class="fa fa-thumb-tack"></i> Featured</h2>
 			<div class="row">
+				@foreach($featured as $project)
 				<div class="col-md-4 text-center">
-					<img data-src="holder.js/320x240" class="img-responsive" alt="rofl">
-					<h3>Project 1</h3>
-					<p>
-						lol
-					</p>
-					<p>
-						<span class="label label-success">3.1</span>
-						<span class="label label-success">3.6</span>
-						<span class="label label-success">Classic</span>
-						<span class="label label-success">CX</span>
-					</p>
-					<p>
-						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
-					</p>
-				</div>
-				<div class="col-md-4 text-center">
-					<img data-src="holder.js/320x240" class="img-responsive" alt="rofl">
-					<h3>Project 2</h3>
-					<p>
-						lol
-					</p>
-					<p>
-						<span class="label label-success">3.1</span>
-						<span class="label label-success">3.6</span>
-						<span class="label label-success">Classic</span>
-						<span class="label label-success">CX</span>
-					</p>
-					<p>
-						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
-					</p>
-				</div>
-				<div class="col-md-4 text-center">
-					<img data-src="holder.js/320x240" class="img-responsive" alt="rofl">
-					<h3>Project 3</h3>
-					<p>
-						lol
-					</p>
-					<p>
-						<span class="label label-success">3.1</span>
-						<span class="label label-success">3.6</span>
-						<span class="label label-success">Classic</span>
-						<span class="label label-success">CX</span>
-					</p>
-					<p>
-						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="section-one">
-		<a class="anchor" id="mostclicked"></a>
-		<div class="container">
-			<h2><i class="fa fa-download"></i> Most clicked</h2>
-			<div class="row">
-				@foreach($mostclicked as $project)
-				<div class="col-md-4 text-center">
-					<img data-src="holder.js/320x240/#fff:#ccc" class="img-responsive" alt="rofl">
+					@if(!$project->screenshot)
+					<img data-src="holder.js/320x240/#eee:#fff/text:No screenshot available" class="img-responsive" alt="{{{ $project->name }}}">
+					@else
+					<img src="{{{ $project->screenshot }}}" width="320" height="240" alt="{{{ $project->name }}}">
+					@endif
 					<h3>{{{ $project->name }}}</h3>
 					<p>
 						{{{ $project->description }}}
@@ -96,7 +44,49 @@
 						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
 						@endif
 						@if($project->download_link)
-						<a href="{{ $project->download_link }}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
+						<a href="{{{ $project->download_link }}}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
+						@else
+						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</button>
+						@endif
+					</p>
+				</div>
+				@endforeach
+			</div>
+		</div>
+	</div>
+	<div class="section-one">
+		<a class="anchor" id="mostclicked"></a>
+		<div class="container">
+			<h2><i class="fa fa-download"></i> Most clicked</h2>
+			<div class="row">
+				@foreach($mostclicked as $project)
+				<div class="col-md-4 text-center">
+					@if(!$project->screenshot)
+					<img data-src="holder.js/320x240/#fff:#eee/text:No screenshot available" class="img-responsive" alt="{{{ $project->name }}}">
+					@else
+					<img src="{{{ $project->screenshot }}}" width="320" height="240" alt="{{{ $project->name }}}">
+					@endif
+					<h3>{{{ $project->name }}}</h3>
+					<p>
+						{{{ $project->description }}}
+					</p>
+					<p>
+						@foreach($project->versions as $version)
+						@if(in_array($version->version,array('3.1','3.6')))
+						<span class="label label-success">{{{ $version->version }}}</span>
+						@else
+						<span class="label label-warning">{{{ $version->version }}}</span>
+						@endif
+						@endforeach
+						{{ $project->classic_formatted }}
+						{{ $project->cx_formatted }}
+					</p>
+					<p>
+						@if(Auth::check() && Auth::user()->editor)
+						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
+						@endif
+						@if($project->download_link)
+						<a href="{{{ $project->download_link }}}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
 						@else
 						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</button>
 						@endif

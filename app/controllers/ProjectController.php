@@ -29,6 +29,12 @@ class ProjectController extends \BaseController {
 					->orderBy('clicks','desc')
 					->take(3)
 					->get()
+			)
+			->withFeatured(
+				Project::with('authors','versions')
+					->orderBy('featured','desc')
+					->take(3)
+					->get()
 			);
 	}
 	
@@ -146,6 +152,7 @@ class ProjectController extends \BaseController {
 				'name' => 'required',
 				'description' => 'required',
 				'website' => 'required|url',
+				'screenshot' => 'url',
 				'tiplanet' => 'required|numeric',
 				'ticalc' => 'required|numeric',
 			);
@@ -163,6 +170,7 @@ class ProjectController extends \BaseController {
 			$project->name = $input['name'];
 			$project->description = $input['description'];
 			$project->website = $input['website'];
+			$project->screenshot = $input['screenshot'] ? $input['screenshot'] : NULL;
 			$project->tiplanet = $input['tiplanet'];
 			$project->ticalc = $input['ticalc'];
 			$project->classic = Input::has('classic');
