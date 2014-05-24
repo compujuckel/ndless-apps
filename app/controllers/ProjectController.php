@@ -1,7 +1,6 @@
 <?php
 
 class ProjectController extends \BaseController {
-
 	public function __construct()
 	{
 		$this->beforeFilter('auth', array(
@@ -24,6 +23,12 @@ class ProjectController extends \BaseController {
 				Project::with('authors','versions')
 					->get()
 					->sortBy('name')
+			)
+			->withMostclicked(
+				Project::with('authors','versions')
+					->orderBy('clicks','desc')
+					->take(3)
+					->get()
 			);
 	}
 	

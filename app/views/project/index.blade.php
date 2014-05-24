@@ -2,7 +2,7 @@
 
 @section('navbar')
 	<li><a data-scroll href="#featured">Featured</a></li>
-	<li><a data-scroll href="#starred">Most starred</a></li>
+	<li><a data-scroll href="#mostclicked">Most clicked</a></li>
 	<li><a data-scroll href="#all">All</a></li>
 @stop
 
@@ -30,7 +30,6 @@
 						<span class="label label-success">CX</span>
 					</p>
 					<p>
-						<button class="btn btn-default btn-xs btn-star"><i class="fa fa-star-o"></i> 1</button>
 						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
 					</p>
 				</div>
@@ -47,7 +46,6 @@
 						<span class="label label-success">CX</span>
 					</p>
 					<p>
-						<button class="btn btn-default btn-xs btn-star"><i class="fa fa-star-o"></i> 2</button>
 						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
 					</p>
 				</div>
@@ -64,7 +62,6 @@
 						<span class="label label-success">CX</span>
 					</p>
 					<p>
-						<button class="btn btn-default btn-xs btn-star"><i class="fa fa-star-o"></i> 3</button>
 						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
 					</p>
 				</div>
@@ -72,61 +69,40 @@
 		</div>
 	</div>
 	<div class="section-one">
-		<a class="anchor" id="starred"></a>
+		<a class="anchor" id="mostclicked"></a>
 		<div class="container">
-			<h2><i class="fa fa-star"></i> Most starred</h2>
+			<h2><i class="fa fa-download"></i> Most clicked</h2>
 			<div class="row">
+				@foreach($mostclicked as $project)
 				<div class="col-md-4 text-center">
 					<img data-src="holder.js/320x240/#fff:#ccc" class="img-responsive" alt="rofl">
-					<h3>Project 1</h3>
+					<h3>{{{ $project->name }}}</h3>
 					<p>
-						lol
+						{{{ $project->description }}}
 					</p>
 					<p>
-						<span class="label label-success">3.1</span>
-						<span class="label label-success">3.6</span>
-						<span class="label label-success">Classic</span>
-						<span class="label label-success">CX</span>
+						@foreach($project->versions as $version)
+						@if(in_array($version->version,array('3.1','3.6')))
+						<span class="label label-success">{{{ $version->version }}}</span>
+						@else
+						<span class="label label-warning">{{{ $version->version }}}</span>
+						@endif
+						@endforeach
+						{{ $project->classic_formatted }}
+						{{ $project->cx_formatted }}
 					</p>
 					<p>
-						<button class="btn btn-default btn-xs btn-star"><i class="fa fa-star-o"></i> 5</button>
-						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
-					</p>
-				</div>
-				<div class="col-md-4 text-center">
-					<img data-src="holder.js/320x240/#fff:#ccc" class="img-responsive" alt="rofl">
-					<h3>Project 2</h3>
-					<p>
-						lol
-					</p>
-					<p>
-						<span class="label label-success">3.1</span>
-						<span class="label label-success">3.6</span>
-						<span class="label label-success">Classic</span>
-						<span class="label label-success">CX</span>
-					</p>
-					<p>
-						<button class="btn btn-default btn-xs btn-star"><i class="fa fa-star-o"></i> 3</button>
-						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
+						@if(Auth::check() && Auth::user()->editor)
+						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
+						@endif
+						@if($project->download_link)
+						<a href="{{ $project->download_link }}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
+						@else
+						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</button>
+						@endif
 					</p>
 				</div>
-				<div class="col-md-4 text-center">
-					<img data-src="holder.js/320x240/#fff:#ccc" class="img-responsive" alt="rofl">
-					<h3>Project 3</h3>
-					<p>
-						lol
-					</p>
-					<p>
-						<span class="label label-success">3.1</span>
-						<span class="label label-success">3.6</span>
-						<span class="label label-success">Classic</span>
-						<span class="label label-success">CX</span>
-					</p>
-					<p>
-						<button class="btn btn-default btn-xs btn-star"><i class="fa fa-star-o"></i> 2</button>
-						<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-download"></i> Download</a>
-					</p>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -156,8 +132,7 @@
 						</button>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#" class="sort-name"><i class="fa fa-sort-alpha-asc fa-fw"></i> Name</a></li>
-							<li><a href="#" class="sort-downloads"><i class="fa fa-download fa-fw"></i> Downloads</a></li>
-							<li><a href="#" class="sort-stars"><i class="fa fa-star fa-fw"></i> Stars</a></li>
+							<li><a href="#" class="sort-downloads"><i class="fa fa-download fa-fw"></i> Clicks</a></li>
 						</ul>
 					</div>
 					@if(Auth::check() && Auth::user()->editor)
