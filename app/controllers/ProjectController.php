@@ -267,5 +267,12 @@ class ProjectController extends \BaseController {
 		
 		return Redirect::to("/projects");
 	}
+	
+	public function click($id)
+	{
+		$project = Project::findOrFail($id);
+		$project->clicks = $project->clicks + 1;
+		$project->save();
+	}
 
 }

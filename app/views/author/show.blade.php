@@ -9,3 +9,20 @@
 		@include('project.partials.list', array('projects', $projects))
 	</div>
 @stop
+
+@section('scripts')
+	<script>
+		$(document).ready(function(){
+			$('[class^=count]').mousedown(function(e){
+				e.preventDefault();
+				if(e.which == 1 || e.which == 2) {
+					console.log('/projects/'+this.classList[0].slice(6)+'/click');
+					$.get('/projects/'+this.classList[0].slice(6)+'/click', function(){
+						if(e.which == 1)
+							window.location.href = $(this).attr('href');
+					});
+				}
+			});
+		});
+	</script>
+@stop

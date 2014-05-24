@@ -24,7 +24,7 @@
 					@else
 					<img src="{{{ $project->screenshot }}}" width="320" height="240" alt="{{{ $project->name }}}">
 					@endif
-					<h3>{{{ $project->name }}}</h3>
+					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
 					<p>
 						{{{ $project->description }}}
 					</p>
@@ -44,7 +44,7 @@
 						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
 						@endif
 						@if($project->download_link)
-						<a href="{{{ $project->download_link }}}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
+						<a href="{{{ $project->download_link }}}" class="count-{{ $project->id }} btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
 						@else
 						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</button>
 						@endif
@@ -66,7 +66,7 @@
 					@else
 					<img src="{{{ $project->screenshot }}}" width="320" height="240" alt="{{{ $project->name }}}">
 					@endif
-					<h3>{{{ $project->name }}}</h3>
+					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
 					<p>
 						{{{ $project->description }}}
 					</p>
@@ -86,7 +86,7 @@
 						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
 						@endif
 						@if($project->download_link)
-						<a href="{{{ $project->download_link }}}" class="btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
+						<a href="{{{ $project->download_link }}}" class="count-{{ $project->id }} btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</span></a>
 						@else
 						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> Download <span class="badge downloads">{{ $project->clicks }}</button>
 						@endif
@@ -176,6 +176,17 @@
 					projectList.filter(projectFilter);
 					projectList.update();
 				},1);
+			});
+			
+			$('[class^=count]').mousedown(function(e){
+				e.preventDefault();
+				if(e.which == 1 || e.which == 2) {
+					console.log('/projects/'+this.classList[0].slice(6)+'/click');
+					$.get('/projects/'+this.classList[0].slice(6)+'/click', function(){
+						if(e.which == 1)
+							window.location.href = $(this).attr('href');
+					});
+				}
 			});
 		});
 	</script>

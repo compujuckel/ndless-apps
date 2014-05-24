@@ -19,6 +19,8 @@ Route::get('logout', array('before' => 'csrf', function()
 	return Redirect::to('/');
 }));
 
+Route::get('projects/{id}/click', 'ProjectController@click');
+
 Route::controller('login','LoginController');
 Route::controller('account','AccountController');
 
