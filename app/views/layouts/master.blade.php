@@ -29,7 +29,7 @@
 						<li><a href="/authors">Authors</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#"><i class="fa fa-bug"></i> Report bug</a></li>
+						<li><a href="https://github.com/compujuckel/ndless-apps/issues"><i class="fa fa-bug"></i> Report bug</a></li>
 						@if(Auth::check())
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{{ Auth::user()->name }}} <b class="caret"></b></a>
