@@ -18,23 +18,41 @@ class ProjectController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('project.index')
-			->withProjects(
-				Project::with('authors','versions')
+		
+		$ttl = Config::get('cache.ttl');
+		
+		$projects = Cache::remember('projects', $ttl, function()
+		{
+			return Project::with('authors','versions')
 					->get()
-					->sortBy('name')
-			)
-			->withMostclicked(
-				Project::with('authors','versions')
+					->sortBy('name');
+		});
+		
+		$mostClicked = Cache::remember('mostClicked', $ttl, function()
+		{
+			return Project::with('authors','versions')
 					->orderBy('clicks','desc')
 					->take(3)
-					->get()
-			)
-			->withFeatured(
-				Project::with('authors','versions')
+					->get();
+		});
+		
+		$featured = Cache::remember('featured', $ttl, function()
+		{
+			return Project::with('authors','versions')
 					->orderBy('featured','desc')
 					->take(3)
-					->get()
+					->get();
+		});
+		
+		return View::make('project.index')
+			->withProjects(
+				$projects
+			)
+			->withMostclicked(
+				$mostClicked
+			)
+			->withFeatured(
+				$featured
 			);
 	}
 	
