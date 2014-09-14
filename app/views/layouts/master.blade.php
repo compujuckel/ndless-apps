@@ -27,6 +27,7 @@
 					<ul class="nav navbar-nav">
 						@yield('navbar')
 						<li><a href="/authors">Authors</a></li>
+						<li><a href="/stats">Statistics</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="https://github.com/compujuckel/ndless-apps/issues"><i class="fa fa-bug"></i> Report bug</a></li>
