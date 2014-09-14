@@ -2,7 +2,12 @@
 
 @section('content')
 	<div class="container">
-		<h1>{{{ $author->name }}} <a href="/authors/{{ $author->id }}/edit" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Edit</a></h1>
+		<h1>
+			{{{ $author->name }}}
+			@if(Auth::check() && Auth::user()->editor)
+			<a href="/authors/{{ $author->id }}/edit" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Edit</a>
+			@endif
+		</h1>
 		<p>
 			Contributed to {{ $author->count }} {{ $author->count == 1 ? 'project' : 'projects' }}
 		</p>
