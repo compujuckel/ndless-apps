@@ -22,7 +22,7 @@
 					@if(!$project->screenshot)
 					<img data-src="holder.js/320x240/#eee:#fff/text:No screenshot available" class="img-responsive" alt="{{{ $project->name }}}">
 					@else
-					<img src="{{{ $project->screenshot }}}" width="320" height="240" alt="{{{ $project->name }}}">
+					<img src="{{{ $project->screenshot }}}" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
 					@endif
 					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
 					<p>
@@ -64,7 +64,7 @@
 					@if(!$project->screenshot)
 					<img data-src="holder.js/320x240/#fff:#eee/text:No screenshot available" class="img-responsive" alt="{{{ $project->name }}}">
 					@else
-					<img src="{{{ $project->screenshot }}}" width="320" height="240" alt="{{{ $project->name }}}">
+					<img src="{{{ $project->screenshot }}}" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
 					@endif
 					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
 					<p>
