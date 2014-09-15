@@ -7,21 +7,21 @@
 @section('content')
 	<div class="container">
 		<form role="form" method="POST">
-			<h2>Sign in or register</h2>
+			<h2>{{ trans('login.title') }}</h2>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-				<input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+				<input type="text" class="form-control" placeholder="{{ trans('login.username') }}" name="username" required autofocus>
 			</div>
 			<br />
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-				<input type="password" class="form-control" placeholder="Password" name="password" required>
+				<input type="password" class="form-control" placeholder="{{ trans('login.password') }}" name="password" required>
 			</div>
 			<label class="checkbox">
-				<input type="checkbox" name="remember"> Remember me
+				<input type="checkbox" name="remember"> {{ trans('login.remember') }}
 			</label>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="login"><i class="fa fa-sign-in"></i> Sign in</button>
-			<button class="btn btn-default btn-block" type="submit" name="action" value="register"><i class="fa fa-key"></i> Register</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="login"><i class="fa fa-sign-in"></i> {{ trans('login.signin') }}</button>
+			<button class="btn btn-default btn-block" type="submit" name="action" value="register"><i class="fa fa-key"></i> {{ trans('login.register') }}</button>
 			@if($errors->any())
 				<br />
 				<div class="alert alert-danger">{{{ $errors->first() }}}</div>

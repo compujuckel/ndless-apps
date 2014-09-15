@@ -8,7 +8,7 @@
 		<link href="/css/styles.less" rel="stylesheet/less" type="text/css">
 		@yield('styles')
 		
-		<title>Ndless Apps</title>
+		<title>{{ trans('master.title') }}</title>
 	</head>
 	<body>
 		@if(!isset($navbar) || $navbar == true)
@@ -16,31 +16,35 @@
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-						<span class="sr-only">Toggle navigation</span>
+						<span class="sr-only">{{ trans('master.togglenav') }}</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Apps</a>
+					<a class="navbar-brand" href="/">{{ trans('master.apps') }}</a>
 				</div>
 				<div class="collapse navbar-collapse" id="navbar">
 					<ul class="nav navbar-nav">
 						@yield('navbar')
-						<li><a href="/authors">Authors</a></li>
-						<li><a href="/stats">Statistics</a></li>
+						<li><a href="/authors">{{ trans('master.authors') }}</a></li>
+						<li><a href="/stats">{{ trans('master.stats') }}</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="https://github.com/compujuckel/ndless-apps/issues"><i class="fa fa-bug"></i> Report bug</a></li>
+						<p class="navbar-text">
+							@foreach(Config::get('app.languages') as $lang)
+							<a href="/{{ $lang }}" class="">{{ strtoupper($lang) }}</a>
+							@endforeach
+						<li><a href="https://github.com/compujuckel/ndless-apps/issues"><i class="fa fa-bug"></i> {{ trans('master.bug') }}</a></li>
 						@if(Auth::check())
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{{ Auth::user()->name }}} <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/account"><i class="fa fa-cog"></i> Settings</a></li>
-								<li><a href="/logout?_token={{ csrf_token() }}"><i class="fa fa-sign-out"></i> Logout</a></li>
+								<li><a href="/account"><i class="fa fa-cog"></i> {{ trans('master.settings') }}</a></li>
+								<li><a href="/logout?_token={{ csrf_token() }}"><i class="fa fa-sign-out"></i> {{ trans('master.logout') }}</a></li>
 							</ul>
 						</li>
 						@else
-						<li><a href="/login"><i class="fa fa-sign-in"></i> Login</a></li>
+						<li><a href="/login"><i class="fa fa-sign-in"></i> {{ trans('master.login') }}</a></li>
 						@endif
 					</ul>
 				</div>

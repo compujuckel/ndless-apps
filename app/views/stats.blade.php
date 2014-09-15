@@ -3,28 +3,28 @@
 @section('content')
 	<div class="section-one">
 		<div class="container">
-			<h1>Statistics</h1>
+			<h1>{{ trans('master.stats') }}</h1>
 		</div>
 	</div>
 	<div class="section-two">
 		<div class="container">
-			<h2>Tracking <strong>{{ $projects }}</strong> apps by <strong>{{ $authors }}</strong> authors</h2>
-			<h3>In total, they have been clicked <strong>{{ $clicks }}</strong> times.</h3>
+			<h2>{{ trans('stats.title', array('pcount' => "<strong>$projects</strong>", 'acount' => "<strong>$authors</strong>")) }}
+			<h3>{{ trans('stats.title2', array('count' => "<strong>$clicks</strong>")) }}</h3>
 		</div>
 	</div>
 	<div class="section-one">
 		<div class="container">
-			<h2><strong>{{ round($cx/$projects*100) }}%</strong> of all apps run on TI-Nspire CX models...</h2>
-			<h3>... and <strong>{{ round($classic/$projects*100) }}%</strong> run on the old TI-Nspire.</h3>
+			<h2>{{ trans('stats.support', array('percent' => "<strong>".round($cx/$projects*100)."%</strong>")) }}</h2>
+			<h3>{{ trans('stats.support2', array('percent' => "<strong>".round($classic/$projects*100)."%</strong>")) }}</h3>
 			<div class="row">
 				<div class="col-md-3 col-md-offset-2">
-					<h4>TI-Nspire CX support</h4>
+					<h4>{{ trans('stats.cxsupport') }}</h4>
 					<div>
 						<canvas id="compChartCX" width="100%" height="100%"></canvas>
 					</div>
 				</div>
 				<div class="col-md-3 col-md-offset-2">
-					<h4>TI-Nspire support</h4>
+					<h4>{{ trans('stats.clsupport') }}</h4>
 					<div>
 						<canvas id="compChartCl" width="100%" height="100%"></canvas>
 					</div>
@@ -34,7 +34,7 @@
 	</div>
 	<div class="section-two">
 		<div class="container">
-			<h2><strong>{{ round(max($comp[0]->count,$comp[1]->count)/$projects*100) }}%</strong> run on the latest Ndless 3.x</h2>
+			<h2>{{ trans('stats.ndless', array('percent' => "<strong>".round(max($comp[0]->count,$comp[1]->count)/$projects*100)."%</strong>")) }}</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<div>
@@ -46,8 +46,8 @@
 	</div>
 	<div class="section-one">
 		<div class="container">
-			<h2><strong>{{ $author[0]->name }}</strong> has contributed to <strong>{{ $author[0]->count }}</strong> projects.</h2>
-			<h3>These are the authors with the most contributions.</h3>
+			<h2>{{ trans('stats.contributions', array('name' => "<strong>".$author[0]->name."</strong>", 'count' => "<strong>".$author[0]->count."</strong>")) }}</h2>
+			<h3>{{ trans('stats.contributions2') }}</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<div>
@@ -69,13 +69,13 @@
 					value: {{ $cx }},
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
-					label: "Support for TI-Nspire CX"
+					label: "{{ trans('stats.cxsupport') }}"
 				},
 				{
 					value: {{ $projects - $cx }},
 					color: "#F7464A",
 					highlight: "#FF5A5E",
-					label: "No support for TI-Nspire CX"
+					label: "{{ trans('stats.nocxsupport') }}"
 				},
 			];
 			var compChartCX = new Chart($("#compChartCX").get(0).getContext("2d")).Doughnut(compDataCX);
@@ -85,13 +85,13 @@
 					value: {{ $classic }},
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
-					label: "Support for TI-Nspire"
+					label: "{{ trans('stats.clsupport') }}"
 				},
 				{
 					value: {{ $projects - $classic }},
 					color: "#F7464A",
 					highlight: "#FF5A5E",
-					label: "No support for TI-Nspire"
+					label: "{{ trans('stats.noclsupport') }}"
 				},
 			];
 			var compChartCl = new Chart($("#compChartCl").get(0).getContext("2d")).Doughnut(compDataCl);

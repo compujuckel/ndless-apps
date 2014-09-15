@@ -34,7 +34,7 @@ class LoginController extends BaseController {
 				return Redirect::to('/');
 			}
 			else {
-				return Redirect::to('login')->withErrors(array('message' => 'Wrong username or password.'));
+				return Redirect::to('login')->withErrors(array('message' => Lang::get('login.error')));
 			}
 		}
 		elseif($input['action'] == 'register')

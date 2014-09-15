@@ -13,13 +13,40 @@
 
 App::before(function($request)
 {
-	//
+	$url_lang = Request::segment(1);
+	$cookie_lang = Cookie::get('language');
+	$browser_lang = substr(Request::server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+
+	if(!empty($url_lang) && in_array($url_lang, Config::get('app.languages')))
+	{
+		if($url_lang != $cookie_lang)
+			Session::put('language', $url_lang);
+
+		App::setLocale($url_lang);
+	}
+	else if(!empty($cookie_lang) && in_array($cookie_lang, Config::get('app.languages')))
+	{
+		App::setLocale($cookie_lang);
+	}
+	else if(!empty($browser_lang) AND in_array($browser_lang, Config::get('app.languages')))
+	{
+		if($browser_lang != $cookie_lang)
+			Session::put('language', $browser_lang);
+
+		App::setLocale($browser_lang);
+	}
+	else
+	{
+		App::setLocale(Config::get('app.locale'));
+	}
 });
 
 
 App::after(function($request, $response)
 {
-	//
+	$lang = Session::get('language');
+	if(!empty($lang))
+		$response->withCookie(Cookie::forever('language',$lang));
 });
 
 /*

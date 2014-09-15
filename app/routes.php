@@ -13,6 +13,15 @@
 
 Route::get('/', 'ProjectController@index');
 
+// for manually setting the preferred language
+foreach(Config::get('app.languages') as $lang)
+{
+	Route::get("/$lang", function()
+	{
+		return Redirect::to('/');
+	});
+}
+
 Route::get('logout', array('before' => 'csrf', function()
 {
 	Auth::logout();

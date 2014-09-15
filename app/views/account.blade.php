@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container">
-		<h1>Account settings</h1>
+		<h1>{{ trans('account.settings') }}</h1>
 		@if($errors->any())
 			<div class="alert alert-danger">{{{ $errors->first() }}}</div>
 		@endif
@@ -10,23 +10,23 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Change password
+						{{ trans('account.changepw') }}
 					</div>
 					<div class="panel-body">
 						<form role="form" method="POST" action="/account">
 							<div class="form-group">
-								<label class="control-label" for="oldPass">Old password</label>
+								<label class="control-label" for="oldPass">{{ trans('account.oldpw') }}</label>
 								<input type="password" class="form-control" name="oldPass" id="oldPass">
 							</div>
 							<div class="form-group">
-								<label class="control-label" for="newPass1">New password (min. 8 characters)</label>
+								<label class="control-label" for="newPass1">{{ trans('account.newpw') }}</label>
 								<input type="password" class="form-control" name="newPass1" id="newPass1">
 							</div>
 							<div class="form-group">
-								<label class="control-label" for="newPass2">Confirm new password</label>
+								<label class="control-label" for="newPass2">{{ trans('account.confirmpw') }}</label>
 								<input type="password" class="form-control" name="newPass2" id="newPass2">
 							</div>
-							<button type="submit" class="btn btn-default" id="passBtn" name="changepw" value="1" disabled="disabled"><i class="fa fa-key"></i> Change password</button>
+							<button type="submit" class="btn btn-default" id="passBtn" name="changepw" value="1" disabled="disabled"><i class="fa fa-key"></i> {{ trans('account.changepw') }}</button>
 						</form>
 					</div>
 				</div>
@@ -34,23 +34,23 @@
 			<div class="col-md-6">
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						Delete account
+						{{ trans('account.delete') }}
 					</div>
 					<div class="panel-body">
 						<form role="form" method="POST" action="/account">
 							<div class="form-group">
-								<label for="remPass">Enter password</label>
+								<label for="remPass">{{ trans('account.enterpw') }}</label>
 								<input type="password" class="form-control" name="remPass" id="remPass">
 							</div>
 							<div class="form-group">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" id="iamsure">
-										Yes, I want to permanently remove my account.
+										{{ trans('account.yousure') }}
 									</label>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-danger" id="removeacc" name="removeacc" value="1" disabled="disabled"><i class="fa fa-trash-o"></i> Remove account</button>
+							<button type="submit" class="btn btn-danger" id="removeacc" name="removeacc" value="1" disabled="disabled"><i class="fa fa-trash-o"></i> {{ trans('account.delete') }}</button>
 						</form>
 					</div>
 				</div>

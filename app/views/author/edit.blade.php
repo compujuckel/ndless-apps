@@ -7,17 +7,17 @@
 				<form role="form" method="POST" action="/authors/{{ $author->id }}">
 					<input type="hidden" name="_method" value="PATCH">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Edit author</div>
+						<div class="panel-heading">{{ trans('authors.edit') }}</div>
 						<div class="panel-body">
 							@if($errors->any())
 								<div class="alert alert-danger">{{{ $errors->first() }}}</div>
 							@endif
 							<div class="form-group">
-								<label for="inputName">Name</label>
+								<label for="inputName">{{ trans('master.name') }}</label>
 								<input class="form-control" type="text" id="inputName" name="name" value="{{{ $author->name }}}">
 							</div>
-							<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Edit author</button>
-							<a class="btn btn-danger {{ $author->projects()->count() > 0 ? 'disabled' : '' }}" data-toggle="modal" data-target=".delete-modal"><i class="fa fa-trash-o"></i> Delete</a>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {{ trans('authors.edit') }}</button>
+							<a class="btn btn-danger {{ $author->projects()->count() > 0 ? 'disabled' : '' }}" data-toggle="modal" data-target=".delete-modal"><i class="fa fa-trash-o"></i> {{ trans('master.delete') }}</a>
 						</div>
 					</div>
 				</form>
@@ -25,16 +25,16 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h4><i class="fa fa-trash-o"></i> Delete {{{ $author->name }}}</h4>
+								<h4><i class="fa fa-trash-o"></i> {{{ trans('master.delete_obj', array('name' => $author->name)) }}}</h4>
 							</div>
 							<div class="modal-body">
-								Are you sure you want to delete this author?
+								{{ trans('authors.yousure') }}
 							</div>
 							<div class="modal-footer">
 								<form method="POST" action="/authors/{{ $author->id }}">
 									<input type="hidden" name="_method" value="DELETE">
-									<button type="submit" class="btn btn-danger">Yes</button>
-									<a href="#" class="btn btn-default" data-dismiss="modal">No</a>
+									<button type="submit" class="btn btn-danger">{{ trans('master.yes') }}</button>
+									<a href="#" class="btn btn-default" data-dismiss="modal">{{ trans('master.no') }}</a>
 								</form>
 							</div>
 						</div>
