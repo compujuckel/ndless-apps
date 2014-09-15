@@ -4,6 +4,7 @@ return array(
 	'title' => 'Ndless Apps',
 	'togglenav' => 'Toggle navigation',
 	'apps' => 'Apps',
+	'categories' => 'Categories',
 	'authors' => 'Authors',
 	'stats' => 'Statistics',
 	'bug' => 'Report bug',

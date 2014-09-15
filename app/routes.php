@@ -36,3 +36,4 @@ Route::controller('stats','StatsController');
 
 Route::resource('projects','ProjectController');
 Route::resource('authors','AuthorController');
+Route::resource('categories','CategoryController');

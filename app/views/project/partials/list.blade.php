@@ -4,6 +4,9 @@
 		<span class="hidden classic">{{ $project->classic }}</span>
 		<span class="hidden cx">{{ $project->cx }}</span>
 		<span class="pull-right">
+			@foreach($project->categories as $category)
+			<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
+			@endforeach
 			@foreach($project->versions as $version)
 			@if(in_array($version->version,array('3.1','3.6')))
 			<span class="label label-success">{{{ $version->version }}}</span>

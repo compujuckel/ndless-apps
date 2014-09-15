@@ -25,6 +25,14 @@
 				</div>
 				<div class="collapse navbar-collapse" id="navbar">
 					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('master.categories') }} <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								@for($i = 1; $i <= 5; $i++)
+								<li><a href="/categories/{{ $i }}">{{ Lang::choice("categories.$i",2) }}</a></li>
+								@endfor
+							</ul>
+						</li>
 						@yield('navbar')
 						<li><a href="/authors">{{ trans('master.authors') }}</a></li>
 						<li><a href="/stats">{{ trans('master.stats') }}</a></li>

@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container">
-		<h1>Edit {{{ $project->name }}}</h1>
+		<h1>{{{ trans('projects.edit_title', array('name' => $project->name)) }}}</h1>
 		<div class="row">
 			<div class="col-md-6">
 				<form role="form" method="POST" action="/projects/{{ $project->id }}">
@@ -145,6 +145,44 @@
 								<tr>
 									<td>{{{ $version->version }}}</td>
 									<td><button type="submit" class="btn btn-danger btn-xs btn-block" name="version_rem" value="{{ $version->id }}"><i class="fa fa-minus fa-fw"></i> {{ trans('master.remove') }}</button></td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</form>
+				<form role="form" method="POST" action="/projects/{{ $project->id }}">
+					<input type="hidden" name="_method" value="PUT">
+					<div class="panel panel-default">
+						<div class="panel-heading">{{ trans('projects.categories') }}</div>
+						<table class="table">
+							<colgroup>
+								<col style="width: 75%">
+								<col style="width: 25%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th>{{ trans('master.name') }}</th>
+									<th>{{ trans('master.action') }}</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<td>
+										<select class="form-control" name="category">
+											@foreach($categories as $category)
+											<option value="{{ $category->id }}">{{{ $category->name }}}</option>
+											@endforeach
+										</select>
+									</td>
+									<td><button type="submit" class="btn btn-primary btn-block" name="category_add" value="1"><i class="fa fa-plus fa-fw"></i> {{ trans('master.add') }}</button></td>
+								</tr>
+							</tfoot>
+							<tbody>
+								@foreach($project->categories as $category)
+								<tr>
+									<td>{{{ $category->name }}}</td>
+									<td><button type="submit" class="btn btn-danger btn-xs btn-block" name="category_rem" value="{{ $category->id }}"><i class="fa fa-minus fa-fw"></i> {{ trans('master.remove') }}</button></td>
 								</tr>
 								@endforeach
 							</tbody>

@@ -9,6 +9,11 @@ class Project extends Eloquent {
 		return $this->belongsToMany('Author','project_authors','project','author');
 	}
 	
+	public function categories()
+	{
+		return $this->belongsToMany('Category','project_categories','project','category');
+	}
+	
 	public function versions()
 	{
 		return $this->belongsToMany('Ndless','compatibility','project','version')->orderBy('version');

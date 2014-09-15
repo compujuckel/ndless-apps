@@ -23,7 +23,7 @@ class ProjectController extends \BaseController {
 		
 		$projects = Cache::remember('projects', $ttl, function()
 		{
-			return Project::with('authors','versions')
+			return Project::with('authors','versions','categories')
 					->get()
 					->sortBy('name');
 		});
@@ -131,7 +131,7 @@ class ProjectController extends \BaseController {
 	{
 		return View::make('project.edit')
 			->withProject(
-				Project::with('authors','versions')
+				Project::with('authors','versions','categories')
 					->findOrFail($id)
 			)
 			->withAuthors(
@@ -153,7 +153,18 @@ class ProjectController extends \BaseController {
 							->where('project', '=', $id)
 							->get();
 					})
-					->orderBy('version')
+					->orderBy('version', 'desc')
+					->get()
+			)
+			->withCategories(
+				DB::table('categories')
+					->whereNotIn('id', function($query) use ($id) {
+						$query->select('category')
+							->from('project_categories')
+							->where('project', '=', $id)
+							->get();
+					})
+					->orderBy('name')
 					->get()
 			)
 			->withScreenshot(
@@ -281,6 +292,46 @@ class ProjectController extends \BaseController {
 			}
 			
 			Project::findOrFail($id)->versions()->attach($input['version']);
+			
+			Cache::flush();
+			
+			return Redirect::to("/projects/$id/edit");
+		}
+		elseif(Input::has('category_rem'))
+		{
+			$rules = array(
+				'category_rem' => 'required|numeric|exists:categories,id'
+			);
+			
+			$input = Input::all();
+			$validator = Validator::make($input,$rules);
+			
+			if($validator->fails())
+			{
+				return Redirect::to("/projects/$id/edit")->withErrors($validator);
+			}
+			
+			Project::findOrFail($id)->categories()->detach($input['category_rem']);
+			
+			Cache::flush();
+			
+			return Redirect::to("/projects/$id/edit");
+		}
+		elseif(Input::has('category_add'))
+		{
+			$rules = array(
+				'category' => 'required|numeric|exists:categories,id'
+			);
+			
+			$input = Input::all();
+			$validator = Validator::make($input,$rules);
+			
+			if($validator->fails())
+			{
+				return Redirect::to("/projects/$id/edit")->withErrors($validator);
+			}
+			
+			Project::findOrFail($id)->categories()->attach($input['category']);
 			
 			Cache::flush();
 			

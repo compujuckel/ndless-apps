@@ -11,7 +11,7 @@
 		<p>
 			{{ Lang::choice('authors.contributed', $author->count, array('count' => $author->count)) }}
 		</p>
-		@include('project.partials.list', array('projects', $projects))
+		@include('project.partials.list', array('projects' => $projects))
 	</div>
 @stop
 

@@ -4,6 +4,7 @@ return array(
 	'title' => 'Ndless-Apps',
 	'togglenav' => 'Navigation umschalten',
 	'apps' => 'Apps',
+	'categories' => 'Kategorien',
 	'authors' => 'Autoren',
 	'stats' => 'Statistiken',
 	'bug' => 'Fehler melden',
