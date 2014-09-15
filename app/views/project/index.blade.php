@@ -26,6 +26,13 @@
 					@endif
 					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
 					<p>
+						<small>
+							@foreach($project->authors as $author)
+							<a href="/authors/{{ $author->id }}" class="label label-default">{{{ $author->name }}}</a>
+							@endforeach
+						</small>
+					</p>
+					<p>
 						{{{ $project->description }}}
 					</p>
 					<p>
@@ -67,6 +74,13 @@
 					<img src="{{{ $project->screenshot }}}" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
 					@endif
 					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
+					<p>
+						<small>
+							@foreach($project->authors as $author)
+							<a href="/authors/{{ $author->id }}" class="label label-default">{{{ $author->name }}}</a>
+							@endforeach
+						</small>
+					</p>
 					<p>
 						{{{ $project->description }}}
 					</p>
