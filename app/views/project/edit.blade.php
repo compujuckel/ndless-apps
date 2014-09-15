@@ -25,10 +25,6 @@
 								<label for="inputWebsite">Website</label>
 								<input class="form-control" type="text" id="inputWebsite" name="website" value="{{{ $project->website }}}">
 							</div>
-							<div class="form-group">
-								<label for="inputScreenshot">Screenshot URL</label>
-								<input class="form-control" type="text" id="inputScreenshot" name="screenshot" value="{{{ $project->screenshot }}}">
-							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
@@ -153,6 +149,26 @@
 								@endforeach
 							</tbody>
 						</table>
+					</div>
+				</form>
+				<form role="form" method="POST" action="/projects/{{ $project->id }}" enctype="multipart/form-data">
+					<input type="hidden" name="_method" value="PUT">
+					<div class="panel panel-default">
+						<div class="panel-heading">Screenshot</div>
+						<div class="panel-body">
+							@if($screenshot)
+							<strong>Current screenshot</strong>
+							<img src="/img/screenshot/{{ $project->id }}.png" class="img-responsive" width="320" height="240">
+							@else
+							No screenshot has been uploaded yet.
+							@endif
+							<p>
+								Please choose a PNG file with a resolution of 320x240 pixels.
+								<input name="screenshot" type="file" accept="image/png">
+								<button type="submit" class="btn btn-primary" name="screenshot_add" value="1"><i class="fa fa-upload"></i> Upload</button>
+								<button type="submit" class="btn btn-danger" name="screenshot_rem" value="1"><i class="fa fa-trash-o"></i> Delete</button>
+							</p>
+						</div>
 					</div>
 				</form>
 			</div>

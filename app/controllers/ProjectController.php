@@ -155,6 +155,9 @@ class ProjectController extends \BaseController {
 					})
 					->orderBy('version')
 					->get()
+			)
+			->withScreenshot(
+				file_exists("public/img/screenshot/{$id}.png")
 			);
 	}
 	
@@ -280,6 +283,26 @@ class ProjectController extends \BaseController {
 			Project::findOrFail($id)->versions()->attach($input['version']);
 			
 			Cache::flush();
+			
+			return Redirect::to("/projects/$id/edit");
+		}
+		elseif(Input::has('screenshot_add'))
+		{
+			if(!Input::hasFile('screenshot')
+				|| !Input::file('screenshot')->isValid()
+				|| Input::file('screenshot')->getMimeType() != 'image/png')
+			{
+				return Redirect::to("/projects/$id/edit")
+						->withErrors(array('message' => 'The file you uploaded is invalid.'));
+			}
+			
+			Input::file('screenshot')->move('public/img/screenshot',"{$id}.png");
+			
+			return Redirect::to("/projects/$id/edit");
+		}
+		elseif(Input::has('screenshot_rem'))
+		{
+			unlink("public/img/screenshot/{$id}.png");
 			
 			return Redirect::to("/projects/$id/edit");
 		}
