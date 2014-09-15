@@ -171,7 +171,7 @@
 									<td>
 										<select class="form-control" name="category">
 											@foreach($categories as $category)
-											<option value="{{ $category->id }}">{{{ $category->name }}}</option>
+											<option value="{{ $category->id }}">{{ Lang::choice("categories.{$category->id}",1) }}</option>
 											@endforeach
 										</select>
 									</td>
@@ -181,7 +181,7 @@
 							<tbody>
 								@foreach($project->categories as $category)
 								<tr>
-									<td>{{{ $category->name }}}</td>
+									<td>{{ Lang::choice("categories.{$category->id}",1) }}</td>
 									<td><button type="submit" class="btn btn-danger btn-xs btn-block" name="category_rem" value="{{ $category->id }}"><i class="fa fa-minus fa-fw"></i> {{ trans('master.remove') }}</button></td>
 								</tr>
 								@endforeach
