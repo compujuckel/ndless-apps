@@ -101,6 +101,8 @@ class ProjectController extends \BaseController {
 		
 		$project->save();
 		
+		Cache::flush();
+		
 		return Redirect::to("/projects/{$project->id}/edit");
 	}
 
@@ -196,6 +198,8 @@ class ProjectController extends \BaseController {
 			
 			$project->save();
 			
+			Cache::flush();
+			
 			return Redirect::to("/projects/$id/edit");
 		}
 		elseif(Input::has('author_rem'))
@@ -214,6 +218,8 @@ class ProjectController extends \BaseController {
 			
 			Project::findOrFail($id)->authors()->detach($input['author_rem']);
 			
+			Cache::flush();
+			
 			return Redirect::to("/projects/$id/edit");
 		}
 		elseif(Input::has('author_add'))
@@ -231,6 +237,8 @@ class ProjectController extends \BaseController {
 			}
 			
 			Project::findOrFail($id)->authors()->attach($input['author']);
+			
+			Cache::flush();
 			
 			return Redirect::to("/projects/$id/edit");
 		}
@@ -251,6 +259,8 @@ class ProjectController extends \BaseController {
 			
 			Project::findOrFail($id)->versions()->detach($input['version_rem']);
 			
+			Cache::flush();
+			
 			return Redirect::to("/projects/$id/edit");
 		}
 		elseif(Input::has('version_add'))
@@ -269,6 +279,8 @@ class ProjectController extends \BaseController {
 			
 			Project::findOrFail($id)->versions()->attach($input['version']);
 			
+			Cache::flush();
+			
 			return Redirect::to("/projects/$id/edit");
 		}
 	}
@@ -282,6 +294,8 @@ class ProjectController extends \BaseController {
 	public function destroy($id)
 	{
 		Project::destroy($id);
+		
+		Cache::flush();
 		
 		return Redirect::to("/projects");
 	}
