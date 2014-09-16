@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('styles')
-	<link href="/css/login.less" rel="stylesheet/less" type="text/css">
+	<link href="/css/login.min.css" rel="stylesheet">
 @stop
 
 @section('content')
