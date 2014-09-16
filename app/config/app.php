@@ -55,7 +55,7 @@ return array(
 	'locale' => 'en',
 	'fallback_locale' => 'en',
 	'languages' => array(
-		'en', 'de'
+		'en', 'de', 'fr'
 	),
 
 	/*
