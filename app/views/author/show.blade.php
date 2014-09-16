@@ -20,11 +20,12 @@
 		$(document).ready(function(){
 			$('[class^=count]').mousedown(function(e){
 				e.preventDefault();
+				var dest = $(this).attr('href');
 				if(e.which == 1 || e.which == 2) {
 					console.log('/projects/'+this.classList[0].slice(6)+'/click');
 					$.get('/projects/'+this.classList[0].slice(6)+'/click', function(){
 						if(e.which == 1)
-							window.location.href = $(this).attr('href');
+							window.location.href = dest;
 					});
 				}
 			});
