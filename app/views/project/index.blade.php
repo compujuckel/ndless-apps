@@ -71,10 +71,10 @@
 			<div class="row">
 				@foreach($mostclicked as $project)
 				<div class="col-md-4 text-center">
-					@if(!$project->screenshot)
+					@if(!file_exists("public/img/screenshot/{$project->id}.png"))
 					<img data-src="holder.js/320x240/#fff:#eee/text:{{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
 					@else
-					<img src="{{{ $project->screenshot }}}" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
+					<img src="/img/screenshot/{{ $project->id }}.png" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
 					@endif
 					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
 					<p>
