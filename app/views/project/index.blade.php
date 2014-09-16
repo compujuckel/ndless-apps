@@ -19,7 +19,7 @@
 			<div class="row">
 				@foreach($featured as $project)
 				<div class="col-md-4 text-center">
-					@if(!file_exists("public/img/screenshot/{$project->id}.png"))
+					@if(!file_exists(public_path() . "/img/screenshot/{$project->id}.png"))
 					<img data-src="holder.js/320x240/#eee:#fff/text:{{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
 					@else
 					<img src="/img/screenshot/{{ $project->id }}.png" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
@@ -71,7 +71,7 @@
 			<div class="row">
 				@foreach($mostclicked as $project)
 				<div class="col-md-4 text-center">
-					@if(!file_exists("public/img/screenshot/{$project->id}.png"))
+					@if(!file_exists(public_path() . "/img/screenshot/{$project->id}.png"))
 					<img data-src="holder.js/320x240/#fff:#eee/text:{{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
 					@else
 					<img src="/img/screenshot/{{ $project->id }}.png" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">

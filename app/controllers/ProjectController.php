@@ -168,7 +168,7 @@ class ProjectController extends \BaseController {
 					->get()
 			)
 			->withScreenshot(
-				file_exists("public/img/screenshot/{$id}.png")
+				file_exists(public_path() . "/img/screenshot/{$id}.png")
 			);
 	}
 	
@@ -186,7 +186,6 @@ class ProjectController extends \BaseController {
 				'name' => 'required',
 				'description' => 'required',
 				'website' => 'required|url',
-				'screenshot' => 'url',
 				'tiplanet' => 'required|numeric',
 				'ticalc' => 'required|numeric',
 			);
@@ -204,7 +203,6 @@ class ProjectController extends \BaseController {
 			$project->name = $input['name'];
 			$project->description = $input['description'];
 			$project->website = $input['website'];
-			$project->screenshot = $input['screenshot'] ? $input['screenshot'] : NULL;
 			$project->tiplanet = $input['tiplanet'];
 			$project->ticalc = $input['ticalc'];
 			$project->classic = Input::has('classic');
@@ -347,13 +345,14 @@ class ProjectController extends \BaseController {
 						->withErrors(array('message' => 'The file you uploaded is invalid.'));
 			}
 			
-			Input::file('screenshot')->move('public/img/screenshot',"{$id}.png");
+			Input::file('screenshot')->move(public_path() . '/img/screenshot',"{$id}.png");
 			
 			return Redirect::to("/projects/$id/edit");
 		}
 		elseif(Input::has('screenshot_rem'))
 		{
-			unlink("public/img/screenshot/{$id}.png");
+			if(file_exists(public_path() . "/img/screenshot/{$id}.png"))
+				unlink(public_path() . "/img/screenshot/{$id}.png");
 			
 			return Redirect::to("/projects/$id/edit");
 		}
