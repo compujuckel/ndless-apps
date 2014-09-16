@@ -136,6 +136,14 @@
 							<input type="checkbox">CX
 						</label>
 					</div>
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-default filter-31">
+							<input type="checkbox">3.1
+						</label>
+						<label class="btn btn-default filter-36">
+							<input type="checkbox">3.6
+						</label>
+					</div>
 					<div class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-sort"></i> {{ trans('master.sort') }} <span class="caret"></span>
@@ -160,9 +168,16 @@
 	<script>
 		function projectFilter(item)
 		{
-			if($('label.filter-classic').hasClass('active') && item.values().classic != 1)
+			var listItem = $('.id-'+item.values().id);
+			
+			if($('label.filter-classic').hasClass('active') && !$('.classic', listItem).hasClass('label-success'))
 				return false;
-			if($('label.filter-cx').hasClass('active') && item.values().cx != 1)
+			if($('label.filter-cx').hasClass('active') && !$('.cx', listItem).hasClass('label-success'))
+				return false;
+			
+			if($('label.filter-31').hasClass('active') && !$('.label:contains(3.1)', listItem).length)
+				return false;
+			if($('label.filter-36').hasClass('active') && !$('.label:contains(3.6)', listItem).length)
 				return false;
 			return true;
 		}
@@ -171,7 +186,7 @@
 			smoothScroll.init();
 		
 			var options = {
-				valueNames: [ 'name', 'description', 'classic', 'cx', 'downloads' ]
+				valueNames: [ 'name', 'description', 'id', 'downloads' ]
 			};
 		
 			var projectList = new List('project-list', options);	
@@ -191,8 +206,9 @@
 				projectList.update();
 			});
 			
-			$('label.filter-classic, label.filter-cx').click(function(){
+			$('label.filter-classic, label.filter-cx, label.filter-31, label.filter-36').click(function(){
 				setTimeout(function(){
+					projectList.filter();
 					projectList.filter(projectFilter);
 					projectList.update();
 				},1);

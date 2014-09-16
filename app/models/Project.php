@@ -22,17 +22,17 @@ class Project extends Eloquent {
 	function getClassicFormattedAttribute()
 	{
 		if($this->classic)
-			return '<span class="label label-success">Classic</span>';
+			return '<span class="label label-success classic">Classic</span>';
 		else
-			return '<span class="label label-danger">Classic</span>';
+			return '<span class="label label-danger classic">Classic</span>';
 	}
 	
 	function getCxFormattedAttribute()
 	{
 		if($this->cx)
-			return '<span class="label label-success">CX</span>';
+			return '<span class="label label-success cx">CX</span>';
 		else
-			return '<span class="label label-danger">CX</span>';
+			return '<span class="label label-danger cx">CX</span>';
 	}
 	
 	function getDownloadLinkAttribute()

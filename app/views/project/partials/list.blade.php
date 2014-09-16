@@ -1,8 +1,7 @@
 <ul class="list-group list">
 	@foreach($projects as $project)
-	<li class="list-group-item">
-		<span class="hidden classic">{{ $project->classic }}</span>
-		<span class="hidden cx">{{ $project->cx }}</span>
+	<li class="list-group-item id-{{ $project->id }}">
+		<span class="hidden id">{{ $project->id }}</span>
 		<span class="pull-right">
 			@foreach($project->categories as $category)
 			<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
