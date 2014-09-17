@@ -18,7 +18,7 @@ foreach(Config::get('app.languages') as $lang)
 {
 	Route::get("/$lang", function()
 	{
-		return Redirect::to('/');
+		return Redirect::back();
 	});
 }
 
