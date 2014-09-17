@@ -7,5 +7,5 @@ return array(
 	'4' => 'Demo|Demos',
 	'5' => 'Système|Système',
 	
-	'incategory' => ':count apps dans cette catégorie'
+	//'incategory' => ':count apps dans cette catégorie'
 );

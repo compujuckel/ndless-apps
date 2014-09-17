@@ -29,5 +29,6 @@ return array(
 	'curscreen' => 'Current screenshot',
 	'noscreen' => 'No screenshot has been uploaded yet.',
 	'upscreen' => 'Please choose a PNG file with a resolution of 320x240 pixels.',
-	'upload' => 'Upload'
+	'upload' => 'Upload',
+	'count' => 'Showing :count of :total apps',
 );

@@ -7,5 +7,11 @@ return array(
 	'4' => 'Demo|Demos',
 	'5' => 'System|System',
 	
-	'incategory' => ':count Apps in dieser Kategorie'
+	'all1' => 'Alle Spiele',
+	'all2' => 'Alle Utensilien',
+	'all3' => 'Alle Bibliotheken',
+	'all4' => 'Alle Demos',
+	'all5' => 'Alle Systemprogramme',
+	
+	'incategory' => 'Zeige :count von :total Apps in dieser Kategorie'
 );

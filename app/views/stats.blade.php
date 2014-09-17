@@ -15,7 +15,7 @@
 	<div class="section-one">
 		<div class="container">
 			<h2>{{ trans('stats.support', array('percent' => "<strong>".round($cx/$projects*100)."%</strong>")) }}</h2>
-			<h3>{{ trans('stats.support2', array('percent' => "<strong>".round($classic/$projects*100)."%</strong>")) }}</h3>
+			<h3 class="bottom">{{ trans('stats.support2', array('percent' => "<strong>".round($classic/$projects*100)."%</strong>")) }}</h3>
 			<div class="row">
 				<div class="col-md-3 col-md-offset-2">
 					<h4>{{ trans('stats.cxsupport') }}</h4>
@@ -34,7 +34,7 @@
 	</div>
 	<div class="section-two">
 		<div class="container">
-			<h2>{{ trans('stats.ndless', array('percent' => "<strong>".round(max($comp[0]->count,$comp[1]->count)/$projects*100)."%</strong>")) }}</h2>
+			<h2 class="bottom">{{ trans('stats.ndless', array('percent' => "<strong>".round(max($comp[0]->count,$comp[1]->count)/$projects*100)."%</strong>")) }}</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<div>
@@ -47,7 +47,7 @@
 	<div class="section-one">
 		<div class="container">
 			<h2>{{ trans('stats.contributions', array('name' => "<strong>".$author[0]->name."</strong>", 'count' => "<strong>".$author[0]->count."</strong>")) }}</h2>
-			<h3>{{ trans('stats.contributions2') }}</h3>
+			<h3 class="bottom">{{ trans('stats.contributions2') }}</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<div>

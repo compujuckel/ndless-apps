@@ -8,7 +8,7 @@
 	</div>
 	<div class="section-two">
 		<div class="container" id="author-list">
-			<h2><i class="fa fa-user"></i> {{ trans('authors.allauthors') }}</h2>
+			<h2 class="bottom"><i class="fa fa-user"></i> {{ trans('authors.allauthors') }}</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
 					<div class="input-group">

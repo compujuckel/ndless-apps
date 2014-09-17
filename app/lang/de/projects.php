@@ -29,5 +29,6 @@ return array(
 	'curscreen' => 'Aktueller Screenshot',
 	'noscreen' => 'Bis jetzt wurde kein Screenshot hochgeladen.',
 	'upscreen' => 'Bitte wähle eine PNG-Datei mit einer Auflösung von 320x240 Pixeln.',
-	'upload' => 'Hochladen'
+	'upload' => 'Hochladen',
+	'count' => 'Zeige :count von :total Apps',
 );

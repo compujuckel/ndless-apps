@@ -5,7 +5,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/css/font-awesome.min.css" rel="stylesheet">
+		@if(App::environment() == "euve34239")
 		<link href="/css/styles.min.css" rel="stylesheet">
+		@else
+		<link href="/css/styles.less" rel="stylesheet/less" type="text/css">
+		@endif
 		@yield('styles')
 		
 		<title>{{ trans('master.title') }}</title>
@@ -64,7 +68,9 @@
 		
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		<!--<script src="/js/less.min.js"></script>-->
+		@if(App::environment() != "euve34239")
+		<script src="/js/less.min.js"></script>
+		@endif
 		<script src="/js/list.min.js"></script>
 		<script src="/js/holder.js"></script>
 		<script src="/js/smooth-scroll.js"></script>
