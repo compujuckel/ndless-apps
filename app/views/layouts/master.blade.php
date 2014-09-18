@@ -66,6 +66,14 @@
 		
 		@yield('content')
 		
+		@if(!isset($navbar) || $navbar == true)
+		<footer class="text-center">
+			<smalL>
+				{{ trans('master.github', array('link' => '<a href="https://github.com/compujuckel/ndless-apps">GitHub</a>')) }} &middot; <a href="/impressum">Impressum</a>
+			</small>
+		</footer>
+		@endif
+		
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		@if(App::environment() != "euve34239")
