@@ -24,4 +24,5 @@ return array(
 	'action' => 'Action',
 	'remove' => 'Retirer',
 	'delete_obj' => 'Supprimer :name',
+    'github' => 'Le code source de ce site est disponible sur :link.'
 );
