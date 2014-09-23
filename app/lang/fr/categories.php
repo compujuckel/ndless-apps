@@ -4,8 +4,14 @@ return array(
 	'1' => 'Jeu|Jeux',
 	'2' => 'Outil|Outils',
 	'3' => 'Librairie|Librairies',
-	'4' => 'Demo|Demos',
+	'4' => 'Démo|Démos',
 	'5' => 'Système|Système',
 	
-	//'incategory' => ':count apps dans cette catégorie'
+	'all1' => 'Tous les jeux',
+	'all2' => 'Tous les outils',
+	'all3' => 'Toutes les libs',
+	'all4' => 'Toutes les démos',
+	'all5' => 'Tous les programes système',
+	
+	'incategory' => 'Affichage de :count programmes sur :total dans cette catégorie'
 );
