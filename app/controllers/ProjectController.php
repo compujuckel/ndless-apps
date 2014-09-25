@@ -6,7 +6,8 @@ class ProjectController extends \BaseController {
 		$this->beforeFilter('auth', array(
 			'except' => array(
 				'index',
-				'show'
+				'show',
+				'click'
 			)
 		));
 	}
