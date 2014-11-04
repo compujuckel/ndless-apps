@@ -43,6 +43,13 @@ function setupProjectList()
 		projectList.update();
 	});
 	
+	$('a.filter-31').click(function(){
+		$('label.filter-31').click();
+	});
+	$('a.filter-36').click(function(){
+		$('label.filter-36').click();
+	});
+	
 	$('label.filter-classic, label.filter-cx, label.filter-31, label.filter-36').click(function(){
 		setTimeout(function(){
 			projectList.filter();

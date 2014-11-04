@@ -7,8 +7,10 @@
 			<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
 			@endforeach
 			@foreach($project->versions as $version)
-			@if(in_array($version->version,array('3.1','3.6')))
-			<span class="label label-success">{{{ $version->version }}}</span>
+			@if($version->version == '3.1')
+			<a class="label label-success filter-31">{{{ $version->version }}}</a>
+			@elseif($version->version == '3.6')
+			<a class="label label-success filter-36">{{{ $version->version }}}</a>
 			@else
 			<span class="label label-warning">{{{ $version->version }}}</span>
 			@endif
