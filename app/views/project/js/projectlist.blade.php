@@ -7,10 +7,9 @@ function projectFilter(item)
 	if($('label.filter-cx').hasClass('active') && !$('.cx', listItem).hasClass('label-success'))
 		return false;
 	
-	if($('label.filter-31').hasClass('active') && !$('.label:contains(3.1)', listItem).length)
+	if($('label.filter-{{{ Ndless::latest()->filter }}}').hasClass('active') && !$('.label:contains({{{ Ndless::latest()->version }}})', listItem).length)
 		return false;
-	if($('label.filter-36').hasClass('active') && !$('.label:contains(3.6)', listItem).length)
-		return false;
+
 	return true;
 }
 
@@ -43,14 +42,11 @@ function setupProjectList()
 		projectList.update();
 	});
 	
-	$('a.filter-31').click(function(){
-		$('label.filter-31').click();
-	});
-	$('a.filter-36').click(function(){
-		$('label.filter-36').click();
+	$('a.filter-{{{ Ndless::latest()->filter }}}').click(function(){
+		$('label.filter-{{{ Ndless::latest()->filter }}}').click();
 	});
 	
-	$('label.filter-classic, label.filter-cx, label.filter-31, label.filter-36').click(function(){
+	$('label.filter-classic, label.filter-cx, label.filter-{{{ Ndless::latest()->filter }}}').click(function(){
 		setTimeout(function(){
 			projectList.filter();
 			projectList.filter(projectFilter);

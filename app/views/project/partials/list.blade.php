@@ -7,12 +7,10 @@
 			<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
 			@endforeach
 			@foreach($project->versions as $version)
-			@if($version->version == '3.1')
-			<a class="label label-success filter-31">{{{ $version->version }}}</a>
-			@elseif($version->version == '3.6')
-			<a class="label label-success filter-36">{{{ $version->version }}}</a>
+			@if($version->id == Ndless::latest()->id)
+			<a class="label label-success filter-{{{ $version->filter }}}">{{{ $version->version }}}</a>
 			@else
-			<span class="label label-warning">{{{ $version->version }}}</span>
+			<span class="label label-default filter-{{{ $version->filter }}}">{{{ $version->version }}}</span>
 			@endif
 			@endforeach
 			{{ $project->classic_formatted }}

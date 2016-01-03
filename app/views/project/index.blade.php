@@ -12,152 +12,14 @@
 			<h1>{{ trans('master.title') }}</h1>
 		</div>
 	</div>
-	<div class="section-two">
-		<a class="anchor" id="featured"></a>
-		<div class="container">
-			<h2><i class="fa fa-thumb-tack"></i> {{ trans('projects.featured') }}</h2>
-			<div class="row">
-				@foreach($featured as $project)
-				<div class="col-md-4 text-center">
-					@if(!file_exists(public_path() . "/img/screenshot/{$project->id}.png"))
-					<img data-src="holder.js/320x240/#eee:#fff/text:{{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
-					@else
-					<img src="/img/screenshot/{{ $project->id }}.png" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
-					@endif
-					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
-					<p>
-						<small>
-							@foreach($project->authors as $author)
-							<a href="/authors/{{ $author->id }}" class="label label-default">{{{ $author->name }}}</a>
-							@endforeach
-						</small>
-					</p>
-					<p>
-						{{{ $project->description }}}
-					</p>
-					<p>
-						@foreach($project->categories as $category)
-						<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
-						@endforeach
-						@foreach($project->versions as $version)
-						@if(in_array($version->version,array('3.1','3.6')))
-						<span class="label label-success">{{{ $version->version }}}</span>
-						@else
-						<span class="label label-warning">{{{ $version->version }}}</span>
-						@endif
-						@endforeach
-						{{ $project->classic_formatted }}
-						{{ $project->cx_formatted }}
-					</p>
-					<p>
-						@if(Auth::check() && Auth::user()->editor)
-						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> {{ trans('master.edit') }}</a>
-						@endif
-						@if($project->download_link)
-						<a href="{{{ $project->download_link }}}" class="count-{{ $project->id }} btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> {{ trans('projects.download') }} <span class="badge downloads">{{ $project->clicks }}</span></a>
-						@else
-						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> {{ trans('projects.download') }} <span class="badge downloads">{{ $project->clicks }}</button>
-						@endif
-					</p>
-				</div>
-				@endforeach
-			</div>
-		</div>
-	</div>
-	<div class="section-one">
-		<a class="anchor" id="mostclicked"></a>
-		<div class="container">
-			<h2><i class="fa fa-download"></i> {{ trans('projects.mostclicked') }}</h2>
-			<div class="row">
-				@foreach($mostclicked as $project)
-				<div class="col-md-4 text-center">
-					@if(!file_exists(public_path() . "/img/screenshot/{$project->id}.png"))
-					<img data-src="holder.js/320x240/#fff:#eee/text:{{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
-					@else
-					<img src="/img/screenshot/{{ $project->id }}.png" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
-					@endif
-					<h3><a href="{{{ $project->website }}}" class="count-{{ $project->id }} name">{{{ $project->name }}}</a></h3>
-					<p>
-						<small>
-							@foreach($project->authors as $author)
-							<a href="/authors/{{ $author->id }}" class="label label-default">{{{ $author->name }}}</a>
-							@endforeach
-						</small>
-					</p>
-					<p>
-						{{{ $project->description }}}
-					</p>
-					<p>
-						@foreach($project->categories as $category)
-						<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
-						@endforeach
-						@foreach($project->versions as $version)
-						@if(in_array($version->version,array('3.1','3.6')))
-						<span class="label label-success">{{{ $version->version }}}</span>
-						@else
-						<span class="label label-warning">{{{ $version->version }}}</span>
-						@endif
-						@endforeach
-						{{ $project->classic_formatted }}
-						{{ $project->cx_formatted }}
-					</p>
-					<p>
-						@if(Auth::check() && Auth::user()->editor)
-						<a href="/projects/{{ $project->id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> {{ trans('master.edit') }}</a>
-						@endif
-						@if($project->download_link)
-						<a href="{{{ $project->download_link }}}" class="count-{{ $project->id }} btn btn-primary btn-xs btn-dl"><i class="fa fa-download"></i> {{ trans('projects.download') }} <span class="badge downloads">{{ $project->clicks }}</span></a>
-						@else
-						<button class="btn btn-primary btn-xs btn-dl" disabled><i class="fa fa-download"></i> {{ trans('projects.download') }} <span class="badge downloads">{{ $project->clicks }}</button>
-						@endif
-					</p>
-				</div>
-				@endforeach
-			</div>
-		</div>
-	</div>
+	@include('project.partials.row', array('projects' => $featured, 'title' => 'featured', 'alternating' => false))
+	@include('project.partials.row', array('projects' => $mostclicked, 'title' => 'mostclicked', 'alternating' => true))
 	<div class="section-two">
 		<a class="anchor" id="all"></a>
 		<div class="container" id="project-list">
 			<h2><i class="fa fa-folder-open"></i> {{ trans('projects.allapps') }}</h2>
 			<h4 class="bottom">{{ trans('projects.count',array('count' => '<span class="p-count"></span>', 'total' => '<span class="p-total"></span>')) }}</h4>
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-search"></i></span>
-						<input type="text" class="form-control search" placeholder="{{ trans('master.search') }}"></input>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-default filter-classic">
-							<input type="checkbox">Classic
-						</label>
-						<label class="btn btn-default filter-cx">
-							<input type="checkbox">CX
-						</label>
-					</div>
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-default filter-31">
-							<input type="checkbox">3.1
-						</label>
-						<label class="btn btn-default filter-36">
-							<input type="checkbox">3.6
-						</label>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-sort"></i> {{ trans('master.sort') }} <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" class="sort-name"><i class="fa fa-sort-alpha-asc fa-fw"></i> {{ trans('master.name') }}</a></li>
-							<li><a href="#" class="sort-downloads"><i class="fa fa-download fa-fw"></i> {{ trans('master.clicks') }}</a></li>
-						</ul>
-					</div>
-					@if(Auth::check() && Auth::user()->editor)
-					<a href="/projects/create" class="btn btn-success"><i class="fa fa-plus"></i> {{ trans('master.add') }}</a>
-					@endif
-				</div>
+			@include('project.partials.controls')
 			</form>
 			<br />
 			@include('project.partials.list', array('projects' => $projects))
@@ -166,8 +28,9 @@
 @stop
 
 @section('scripts')
-	<script src="/js/projectlist.js"></script>
 	<script>
+		@include('project.js.projectlist')
+	
 		$(document).ready(function(){
 			smoothScroll.init();
 			setupProjectList();
