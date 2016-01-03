@@ -18,10 +18,10 @@ foreach(Config::get('app.languages') as $lang)
 {
 	Route::get("/$lang", function()
 	{
-		if(substr(URL::previous(),-1) == '/')
-			return Redirect::back();
-		else
+		if(substr_count(URL::previous(),'/') == 2) // Redirect to home if no referer is set (URL::previous() will be http://hostname but Redirect::back() will throw an error because it uses relative paths)
 			return Redirect::to('/');
+		else
+			return Redirect::back();
 	});
 }
 
