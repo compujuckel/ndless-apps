@@ -2,6 +2,7 @@
 
 class Ndless extends Eloquent {
 	protected $table = 'ndless';
+	protected $appends = array('filter');
 	
 	public function projects()
 	{

@@ -2,6 +2,7 @@
 	@foreach($projects as $project)
 	<li class="list-group-item id-{{ $project->id }}">
 		<span class="hidden id">{{ $project->id }}</span>
+		<span class="hidden timestamp">{{ $project->created_at->timestamp }}</span>
 		<span class="pull-right">
 			@foreach($project->categories as $category)
 			<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>

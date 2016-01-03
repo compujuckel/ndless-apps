@@ -26,6 +26,7 @@
 			<ul class="dropdown-menu" role="menu">
 				<li><a href="#" class="sort-name"><i class="fa fa-sort-alpha-asc fa-fw"></i> {{ trans('master.name') }}</a></li>
 				<li><a href="#" class="sort-downloads"><i class="fa fa-download fa-fw"></i> {{ trans('master.clicks') }}</a></li>
+				<li><a href="#" class="sort-timestamp"><i class="fa fa-clock-o fa-fw"></i> {{ trans('master.timestamp') }}</a></li>
 			</ul>
 		</div>
 		@if(Auth::check() && Auth::user()->editor)

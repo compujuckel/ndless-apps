@@ -26,7 +26,7 @@ class ProjectController extends \BaseController {
 		{
 			return Project::with('authors','versions','categories')
 					->get()
-					->sortBy('name');
+					->sortByDesc('created_at');
 		});
 		
 		$mostClicked = Cache::remember('mostClicked', $ttl, function()

@@ -1,8 +1,7 @@
 <?php
 
 class Project extends Eloquent {
-	protected $hidden = array('created_at', 'updated_at');
-	protected $appends = array('stars');
+	protected $hidden = array('updated_at');
 
 	public function authors()
 	{

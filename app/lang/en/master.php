@@ -17,6 +17,7 @@ return array(
 	'sort' => 'Sort',
 	'name' => 'Name',
 	'clicks' => 'Clicks',
+	'timestamp' => 'Recently added',
 	'add' => 'Add',
 	'delete' => 'Delete',
 	'yes' => 'Yes',
