@@ -7,7 +7,7 @@ return array(
 	'support2' => '... und :percent laufen auf dem alten TI-Nspire.',
 	'cxsupport' => 'TI-Nspire CX-Unterstüzung',
 	'clsupport' => 'TI-Nspire-Unterstützung',
-	'ndless' => ':percent laufen auf dem neuesten Ndless 3.x',
+	'ndless' => ':percent laufen auf dem neuesten Ndless :version',
 	'contributions' => ':name hat zu :count Projekten beigetragen.',
 	'contributions2' => 'Dies sind die Autoren mit den meisten Beiträgen.',
 	'nocxsupport' => 'Keine TI-Nspire CX-Unterstützung',

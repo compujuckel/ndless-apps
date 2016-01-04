@@ -12,7 +12,7 @@ class StatsController extends BaseController {
 			'comp' => DB::table('compatibility')
 					->join('ndless', 'compatibility.version', '=', 'ndless.id')
 					->groupBy('compatibility.version')
-					->orderBy('count', 'DESC')
+					->orderBy('version', 'DESC')
 					->select(DB::raw('count(project) as count, ndless.version as version'))
 					->get(),
 			'author' => DB::table('project_authors')

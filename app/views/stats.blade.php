@@ -34,7 +34,7 @@
 	</div>
 	<div class="section-two">
 		<div class="container">
-			<h2 class="bottom">{{ trans('stats.ndless', array('percent' => "<strong>".round(max($comp[0]->count,$comp[1]->count)/$projects*100)."%</strong>")) }}</h2>
+			<h2 class="bottom">{{ trans('stats.ndless', array('percent' => "<strong>".round($comp[0]->count/$projects*100)."%</strong>", 'version' => Ndless::latest()->version)) }}</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<div>
