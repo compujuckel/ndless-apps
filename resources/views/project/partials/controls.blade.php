@@ -15,9 +15,11 @@
 			</label>
 		</div>
 		<div class="btn-group" data-toggle="buttons">
-			<label class="btn btn-default filter-{{{ Ndless::latest()->filter }}}">
-				<input type="checkbox">{{{ Ndless::latest()->version }}}
+			@foreach(Ndless::current() as $version)
+			<label class="btn btn-default filter-{{{ $version->filter }}}">
+				<input type="checkbox">{{{ $version->version }}}
 			</label>
+			@endforeach
 		</div>
 		<div class="btn-group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

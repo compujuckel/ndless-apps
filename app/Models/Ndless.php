@@ -18,6 +18,15 @@ class Ndless extends Eloquent {
 		});
 	}
 	
+	public static function current()
+	{
+		$ttl = Config::get('cache.ttl');
+		
+		return Cache::remember('currentVersions', $ttl, function() {
+			return Ndless::where('deprecated', 0)->orderBy('version')->get();
+		});
+	}
+	
 	public function getFilterAttribute()
 	{
 		return str_replace('.', '', $this->version);

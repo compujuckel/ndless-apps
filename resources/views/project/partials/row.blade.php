@@ -26,7 +26,7 @@
 					<a href="/categories/{{ $category->id }}" class="label label-info"><i class="fa {{ $category->name }}"></i> {{ Lang::choice("categories.{$category->id}",1) }}</a>
 					@endforeach
 					@foreach($project->versions as $version)
-					@if($version->id == Ndless::latest()->id)
+					@if(!$version->deprecated)
 					<span class="label label-success">{{{ $version->version }}}</span>
 					@else
 					<span class="label label-default">{{{ $version->version }}}</span>
