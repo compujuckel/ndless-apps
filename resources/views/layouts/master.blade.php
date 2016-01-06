@@ -6,11 +6,7 @@
 		<link href="/favicon.png" rel="icon" type="image/png">
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/css/font-awesome.min.css" rel="stylesheet">
-		@if(App::environment() == "euve34239")
 		<link href="/css/styles.min.css" rel="stylesheet">
-		@else
-		<link href="/css/styles.less" rel="stylesheet/less" type="text/css">
-		@endif
 		@yield('styles')
 		
 		<title>{{ trans('master.title') }}</title>
@@ -33,9 +29,9 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('master.categories') }} <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								@for($i = 1; $i <= 5; $i++)
-								<li><a href="/categories/{{ $i }}">{{ Lang::choice("categories.$i",2) }}</a></li>
-								@endfor
+								@foreach(Category::all()->sortBy('id') as $category)
+								<li><a href="/categories/{{ $category->id }}">{{ Lang::choice("categories.{$category->id}",2) }}</a></li>
+								@endforeach
 							</ul>
 						</li>
 						@yield('navbar')
