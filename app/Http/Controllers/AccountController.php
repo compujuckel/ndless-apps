@@ -60,7 +60,7 @@ class AccountController extends BaseController {
 			
 			$user = Auth::user();
 			
-			if(!Auth::validate(array('name' => $user->name, 'password' => $input['oldPass'])))
+			if(!Auth::validate(array('name' => $user->name, 'password' => $input['remPass'])))
 			{
 				return Redirect::to('/account')->withErrors(array('message' => 'You have entered a wrong password.'));
 			}
