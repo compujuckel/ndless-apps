@@ -22,6 +22,7 @@ return array(
 	'delete' => 'Delete',
 	'yes' => 'Yes',
 	'no' => 'No',
+	'showdeprecated' => 'Show deprecated versions',
 	'action' => 'Action',
 	'remove' => 'Remove',
 	'delete_obj' => 'Delete :name',

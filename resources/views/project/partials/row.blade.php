@@ -29,7 +29,7 @@
 					@if(!$version->deprecated)
 					<span class="label label-success">{{{ $version->version }}}</span>
 					@else
-					<span class="label label-default">{{{ $version->version }}}</span>
+					<span class="label label-default label-ndless-deprecated">{{{ $version->version }}}</span>
 					@endif
 					@endforeach
 					{!! $project->classic_formatted !!}

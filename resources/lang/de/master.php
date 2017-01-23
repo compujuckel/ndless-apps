@@ -22,6 +22,7 @@ return array(
 	'delete' => 'Löschen',
 	'yes' => 'Ja',
 	'no' => 'Nein',
+    'showdeprecated' => 'Veraltete Versionen anzeigen',
 	'action' => 'Aktion',
 	'remove' => 'Entfernen',
 	'delete_obj' => ':name löschen',

@@ -32,6 +32,14 @@ class ProjectController extends \BaseController {
 		$mostClicked = Cache::remember('mostClicked', $ttl, function()
 		{
 			return Project::with('authors','versions')
+					->whereExists(function($query)
+					{
+						$query->select(DB::raw(1))
+							->from('compatibility')
+							->join('ndless', 'ndless.id', '=', 'compatibility.version')
+							->whereRaw('compatibility.project = projects.id')
+							->whereRaw('ndless.deprecated = 0');
+					})
 					->orderBy('clicks','desc')
 					->take(3)
 					->get();

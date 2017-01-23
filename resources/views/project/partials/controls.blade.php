@@ -7,6 +7,11 @@
 	</div>
 	<div class="form-group">
 		<div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-default show-deprecated">
+				<input type="checkbox">{{ trans('master.showdeprecated') }}</input>
+			</label>
+		</div>
+		<div class="btn-group" data-toggle="buttons">
 			<label class="btn btn-default filter-classic">
 				<input type="checkbox">Classic
 			</label>

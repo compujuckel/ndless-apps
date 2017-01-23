@@ -15,9 +15,14 @@ class Project extends Eloquent {
 	
 	public function versions()
 	{
-		return $this->belongsToMany('Ndless','compatibility','project','version')->orderBy('version');
+		return $this->belongsToMany('Ndless','compatibility','project','version')->orderBy('ndless.version');
 	}
 	
+	function getDeprecatedAttribute()
+	{
+		return $this->versions()->where('deprecated', '=', '0')->count() == 0;
+	}
+
 	function getClassicFormattedAttribute()
 	{
 		if($this->classic)

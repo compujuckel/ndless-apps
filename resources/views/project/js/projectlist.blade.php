@@ -1,34 +1,59 @@
-function projectFilter(item)
-{
-	var listItem = $('.id-'+item.values().id);
-
-	if($('label.filter-classic').hasClass('active') && !$('.classic', listItem).hasClass('label-success'))
-		return false;
-	if($('label.filter-cx').hasClass('active') && !$('.cx', listItem).hasClass('label-success'))
-		return false;
-	
-	@foreach(Ndless::current() as $version)
-	if($('label.filter-{{{ $version->filter }}}').hasClass('active') && !$('.label:contains({{{ $version->version }}})', listItem).length)
-		return false;
-	@endforeach
-
-	return true;
-}
-
 function setupProjectList()
 {
-	var options = {
-		valueNames: [ 'name', 'description', 'id', 'downloads', 'timestamp' ]
-	};
+    var options = {
+        valueNames: [ 'name', 'description', 'id', 'downloads', 'timestamp' ]
+    };
 
-	var projectList = new List('project-list', options);
-	projectList.filter(projectFilter);
+    var projectList = new List('project-list', options);
+
+    function filterProjectList() {
+        var options = {
+            classic: $('label.filter-classic').hasClass('active'),
+            cx: $('label.filter-cx').hasClass('active'),
+            deprecated: $('label.show-deprecated').hasClass('active'),
+            versions: {
+                @foreach(Ndless::current() as $version)
+                'filter-{{ $version->filter }}': $('label.filter-{{{ $version->filter }}}').hasClass('active'),
+                @endforeach
+            }
+        };
+
+        var f = function (item) {
+            var listItem = $('.id-'+item.values().id);
+
+            if(!this.options.deprecated && $(listItem).hasClass('project-deprecated'))
+                return false;
+            if(this.options.classic && !$('.classic', listItem).hasClass('label-success'))
+                return false;
+            if(this.options.cx && !$('.cx', listItem).hasClass('label-success'))
+                return false;
+
+            for (v in this.options.versions) {
+                if(this.options.versions[v] && !$('.' + v, listItem).length)
+                    return false;
+            }
+
+            return true;
+        }.bind({options: options});
+
+        projectList.filter(f);
+    }
+
+    function filterAndUpdate() {
+        projectList.filter();
+        filterProjectList();
+        projectList.update();
+    }
 
 	$('.p-total, .p-count').text(projectList.size());
 
 	projectList.on('updated', function(){
 		$('.p-count').text(projectList.matchingItems.length);
 	});
+
+    filterAndUpdate();
+
+	$('.label-ndless-deprecated').hide();
 
 	$('.sort-name').click(function(e){
 		e.preventDefault();
@@ -51,23 +76,24 @@ function setupProjectList()
 		})
 		projectList.update();
 	});
-	
+
+	$('label.show-deprecated').click(function(){
+		$('.label-ndless-deprecated').toggle();
+	});
+
+
 	@foreach(Ndless::current() as $version)
 	$('a.filter-{{{ $version->filter }}}').click(function(){
 		$('label.filter-{{{ $version->filter }}}').click();
 	});
 	@endforeach
 
-	$('label.filter-classic, label.filter-cx'
+	$('label.filter-classic, label.filter-cx, label.show-deprecated'
 	@foreach(Ndless::current() as $version)
 	+ ',label.filter-{{{ $version->filter }}}'
 	@endforeach
 	).click(function(){
-		setTimeout(function(){
-			projectList.filter();
-			projectList.filter(projectFilter);
-			projectList.update();
-		},1);
+		setTimeout(filterAndUpdate, 1);
 	});
 
 	$('[class^=count]').mousedown(function(e){

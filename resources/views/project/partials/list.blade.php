@@ -1,6 +1,6 @@
 <ul class="list-group list">
 	@foreach($projects as $project)
-	<li class="list-group-item id-{{ $project->id }}">
+	<li class="list-group-item id-{{ $project->id }} {{ $project->deprecated ? 'project-deprecated' : '' }}">
 		<span class="hidden id">{{ $project->id }}</span>
 		<span class="hidden timestamp">{{ $project->created_at->timestamp }}</span>
 		<span class="pull-right">
@@ -11,7 +11,7 @@
 			@if(!$version->deprecated)
 			<a class="label label-success filter-{{{ $version->filter }}}">{{{ $version->version }}}</a>
 			@else
-			<span class="label label-default filter-{{{ $version->filter }}}">{{{ $version->version }}}</span>
+			<span class="label label-default label-ndless-deprecated filter-{{{ $version->filter }}}">{{{ $version->version }}}</span>
 			@endif
 			@endforeach
 			{!! $project->classic_formatted !!}
