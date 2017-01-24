@@ -31,7 +31,9 @@
 	<script>
 		$(document).ready(function(){
 			smoothScroll.init();
-			setupProjectList();
+			//setupProjectList();
+
+			ProjectList.init();
 		});
 	</script>
 @stop

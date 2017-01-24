@@ -73,9 +73,6 @@
 		
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		@if(App::environment() != "euve34239")
-		<script src="/js/less.min.js"></script>
-		@endif
 		<script src="/js/list.min.js"></script>
 		<script src="/js/holder.js"></script>
 		<script src="/js/smooth-scroll.js"></script>
