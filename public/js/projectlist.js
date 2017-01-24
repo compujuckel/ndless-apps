@@ -5,18 +5,19 @@ function setupProjectList()
     };
 
     var projectList = new List('project-list', options);
+    var currentNdlessVersions = JSON.parse($('#current-ndless-versions').val());
 
     function filterProjectList() {
         var options = {
             classic: $('label.filter-classic').hasClass('active'),
             cx: $('label.filter-cx').hasClass('active'),
             deprecated: $('label.show-deprecated').hasClass('active'),
-            versions: {
-                @foreach(Ndless::current() as $version)
-                'filter-{{ $version->filter }}': $('label.filter-{{{ $version->filter }}}').hasClass('active'),
-                @endforeach
-            }
+            versions: {}
         };
+
+        currentNdlessVersions.forEach((elem) => {
+           options.versions['filter-' + elem.filter] = $('label.filter-' + elem.filter).hasClass('active');
+        });
 
         var f = function (item) {
             var listItem = $('.id-'+item.values().id);
@@ -81,17 +82,14 @@ function setupProjectList()
 		$('.label-ndless-deprecated').toggle();
 	});
 
-
-	@foreach(Ndless::current() as $version)
-	$('a.filter-{{{ $version->filter }}}').click(function(){
-		$('label.filter-{{{ $version->filter }}}').click();
-	});
-	@endforeach
+    currentNdlessVersions.forEach(function (elem) {
+        $('a.filter-' + elem.filter).click(function () {
+            $('label.filter-' + elem.filter).click();
+        });
+    });
 
 	$('label.filter-classic, label.filter-cx, label.show-deprecated'
-	@foreach(Ndless::current() as $version)
-	+ ',label.filter-{{{ $version->filter }}}'
-	@endforeach
+    + currentNdlessVersions.reduce((prev, cur) => prev + ', label.filter-' + cur.filter, '')
 	).click(function(){
 		setTimeout(filterAndUpdate, 1);
 	});

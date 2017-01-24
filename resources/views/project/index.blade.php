@@ -20,7 +20,6 @@
 			<h2><i class="fa fa-folder-open"></i> {{ trans('projects.allapps') }}</h2>
 			<h4 class="bottom">{!! trans('projects.count',array('count' => '<span class="p-count"></span>', 'total' => '<span class="p-total"></span>')) !!}</h4>
 			@include('project.partials.controls')
-			</form>
 			<br />
 			@include('project.partials.list', array('projects' => $projects))
 		</div>
@@ -28,9 +27,8 @@
 @stop
 
 @section('scripts')
+	<script src="js/projectlist.js"></script>
 	<script>
-		@include('project.js.projectlist')
-	
 		$(document).ready(function(){
 			smoothScroll.init();
 			setupProjectList();

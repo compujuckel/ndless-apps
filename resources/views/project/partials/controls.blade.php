@@ -1,4 +1,5 @@
 <form class="form-inline" role="form">
+	<input type="hidden" id="current-ndless-versions" value="{{ Ndless::current() }}" />
 	<div class="form-group">
 		<div class="input-group">
 			<span class="input-group-addon"><i class="fa fa-search"></i></span>

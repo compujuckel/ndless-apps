@@ -18,9 +18,8 @@
 @stop
 
 @section('scripts')
+	<script src="js/projectlist.js"></script>
 	<script>
-		@include('project.js.projectlist')
-	
 		$(document).ready(function(){
 			setupProjectList();
 		});
