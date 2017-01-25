@@ -8,7 +8,7 @@
 	</div>
 	<div class="section-two">
 		<div class="container">
-			<h2>{!! trans('stats.title', array('pcount' => "<strong>$projects</strong>", 'acount' => "<strong>$authors</strong>")) !!}
+			<h2>{!! trans('stats.title', array('pcount' => "<strong>$projects</strong>", 'acount' => "<strong>$authors</strong>")) !!}</h2>
 			<h3>{!! trans('stats.title2', array('count' => "<strong>$clicks</strong>")) !!}</h3>
 		</div>
 	</div>
