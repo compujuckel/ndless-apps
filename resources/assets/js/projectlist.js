@@ -101,17 +101,6 @@ var ProjectList = (function () {
         ).click(function(){
             setTimeout(filterProjectList, 1);
         });
-
-        $('[class^=count]').mousedown(function(e){
-            e.preventDefault();
-            var dest = $(this).attr('href');
-            if(e.which == 1 || e.which == 2) {
-                $.get('/projects/'+this.classList[0].slice(6)+'/click', function(){
-                    if(e.which == 1)
-                        window.location.href = dest;
-                });
-            }
-        });
     }
 
     function init() {

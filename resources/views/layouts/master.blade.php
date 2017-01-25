@@ -4,9 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="/favicon.png" rel="icon" type="image/png">
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/css/styles.min.css" rel="stylesheet">
+		<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 		@yield('styles')
 		
 		<title>{{ trans('master.title') }}</title>
@@ -70,12 +68,8 @@
 			</small>
 		</footer>
 		@endif
-		
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/list.min.js"></script>
-		<script src="/js/holder.js"></script>
-		<script src="/js/smooth-scroll.js"></script>
+
+		<script src="{{ elixir('js/app.js') }}"></script>
 		@yield('scripts')
 	</body>
 </html>

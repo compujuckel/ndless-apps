@@ -13,5 +13,16 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.less('app.less')
-        .scripts('projectlist.js')
+        .scripts([
+            './node_modules/jquery/dist/jquery.js',
+            './node_modules/bootstrap/dist/js/bootstrap.js',
+            './node_modules/list.js/dist/list.js',
+            './node_modules/holderjs/holder.js',
+            './node_modules/smooth-scroll/dist/js/smooth-scroll.js',
+            'projectlist.js',
+            'clickcounter.js'
+        ], 'public/js/app.js')
+        .version(['js/app.js', 'css/app.css'])
+        .copy('node_modules/font-awesome/fonts', 'public/fonts')
+    ;
 });

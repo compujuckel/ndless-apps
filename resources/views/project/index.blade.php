@@ -27,12 +27,10 @@
 @stop
 
 @section('scripts')
-	<script src="js/projectlist.js"></script>
 	<script>
 		$(document).ready(function(){
 			smoothScroll.init();
-			//setupProjectList();
-
+			ClickCounter.init();
 			ProjectList.init();
 		});
 	</script>

@@ -6,7 +6,7 @@
 			@foreach($projects as $project)
 			<div class="col-md-4 text-center">
 				@if(!file_exists(public_path() . "/img/screenshot/{$project->id}.png"))
-				<img data-src="holder.js/320x240/{{ $alternating ? '#fff:#eee' : '#eee:#fff' }}/text:{{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
+				<img data-src="holder.js/320x240/{{ $alternating ? '?bg=fff&fg=eee' : '?bg=eee&fg=fff' }}&text={{ trans('projects.nopic') }}" class="img-responsive" alt="{{{ $project->name }}}">
 				@else
 				<img src="/img/screenshot/{{ $project->id }}.png" width="320" height="240" class="img-responsive" alt="{{{ $project->name }}}">
 				@endif

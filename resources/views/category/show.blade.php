@@ -18,10 +18,10 @@
 @stop
 
 @section('scripts')
-	<script src="js/projectlist.js"></script>
 	<script>
 		$(document).ready(function(){
-			setupProjectList();
+			ClickCounter.init();
+		    ProjectList.init();
 		});
 	</script>
 @stop
