@@ -7,14 +7,14 @@
 @stop
 
 @section('content')
-	<div class="section-one">
+	<div class="section">
 		<div class="container">
 			<h1>{{ trans('master.title') }}</h1>
 		</div>
 	</div>
 	@include('project.partials.row', array('projects' => $featured, 'title' => 'featured', 'alternating' => false))
 	@include('project.partials.row', array('projects' => $mostclicked, 'title' => 'mostclicked', 'alternating' => true))
-	<div class="section-two">
+	<div class="section">
 		<a class="anchor" id="all"></a>
 		<div class="container" id="project-list">
 			<h2><i class="fa fa-folder-open"></i> {{ trans('projects.allapps') }}</h2>

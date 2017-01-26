@@ -19,8 +19,10 @@ elixir(function(mix) {
             './node_modules/list.js/dist/list.js',
             './node_modules/holderjs/holder.js',
             './node_modules/smooth-scroll/dist/js/smooth-scroll.js',
+            './node_modules/chart.js/dist/Chart.js',
             'projectlist.js',
-            'clickcounter.js'
+            'clickcounter.js',
+            'stats.js'
         ], 'public/js/app.js')
         .version(['js/app.js', 'css/app.css'])
         .copy('node_modules/font-awesome/fonts', 'public/fonts')

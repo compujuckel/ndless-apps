@@ -1,4 +1,4 @@
-<div class="section-{{ $alternating ? 'one' : 'two' }}">
+<div class="section">
 	<a class="anchor" id="{{ $title }}"></a>
 	<div class="container">
 		<h2><i class="fa fa-thumb-tack"></i> {{ trans('projects.' . $title) }}</h2>

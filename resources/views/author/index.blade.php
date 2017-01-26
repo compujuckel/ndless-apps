@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="section-one">
+	<div class="section">
 		<div class="container">
 			<h1>{{ trans('master.authors') }}</h1>
 		</div>
 	</div>
-	<div class="section-two">
+	<div class="section">
 		<div class="container" id="author-list">
 			<h2 class="bottom"><i class="fa fa-user"></i> {{ trans('authors.allauthors') }}</h2>
 			<form class="form-inline" role="form">

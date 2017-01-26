@@ -26,5 +26,8 @@ return array(
 	'action' => 'Action',
 	'remove' => 'Retirer',
 	'delete_obj' => 'Supprimer :name',
-    'github' => 'Le code source de ce site est disponible sur :link.'
+    'github' => 'Le code source de ce site est disponible sur :link.',
+
+    'thousands_sep' => '.',
+    'dec_point' => ','
 );

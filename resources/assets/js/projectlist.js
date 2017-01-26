@@ -107,7 +107,7 @@ var ProjectList = (function () {
         initProjectList();
 
         // Get current Ndless versions from hidden input field
-        currentNdlessVersions = JSON.parse($('#current-ndless-versions').val());
+        currentNdlessVersions = JSON.parse($('#current-ndless-versions').html());
 
         $('.p-count, .p-total').text(list.size());
 

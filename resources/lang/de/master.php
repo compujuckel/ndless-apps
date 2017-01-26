@@ -26,5 +26,8 @@ return array(
 	'action' => 'Aktion',
 	'remove' => 'Entfernen',
 	'delete_obj' => ':name löschen',
-	'github' => 'Der Sourcecode dieser Webseite ist verfügbar auf :link.'
+	'github' => 'Der Sourcecode dieser Webseite ist verfügbar auf :link.',
+
+    'thousands_sep' => '.',
+    'dec_point' => ','
 );

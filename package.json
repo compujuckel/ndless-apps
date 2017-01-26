@@ -2,6 +2,7 @@
   "private": true,
   "devDependencies": {
     "bootstrap": "^3.3.7",
+    "chart.js": "^2.4.0",
     "font-awesome": "^4.7.0",
     "gulp": "^3.8.8",
     "holderjs": "^2.9.4",
