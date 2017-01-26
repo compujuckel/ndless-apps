@@ -59,6 +59,9 @@ var Stats = (function(){
                         yAxes: [{
                             gridLines: {
                                 display: false
+                            },
+                            ticks: {
+                                min: 0
                             }
                         }]
                     }
@@ -79,14 +82,14 @@ var Stats = (function(){
         versChart = buildBarChart(
             data.comp.map(function (elem) { return elem.version; }),
             data.comp.map(function (elem) { return elem.count; }),
-            'compatibility',
+            lang.compatible,
             '#versChart'
         );
 
         authChart = buildBarChart(
             data.author.map(function (elem) { return elem.name; }),
             data.author.map(function (elem) { return elem.count; }),
-            'contributions',
+            lang.contributions,
             '#authChart'
         );
     }

@@ -65,10 +65,12 @@
     </script>
     <script type="application/json" id="lang-data">
         {!! json_encode(array(
-            'cxsupport' => trans('stats.cxsupport'),
-            'nocxsupport' => trans('stats.nocxsupport'),
-            'clsupport' => trans('stats.clsupport'),
-            'noclsupport' => trans('stats.noclsupport')
+            'cxsupport'     => trans('stats.cxsupport'),
+            'nocxsupport'   => trans('stats.nocxsupport'),
+            'clsupport'     => trans('stats.clsupport'),
+            'noclsupport'   => trans('stats.noclsupport'),
+            'compatible'    => trans('stats.compatible'),
+            'contributions' => trans('stats.contributions3')
         )) !!}
     </script>
 @stop

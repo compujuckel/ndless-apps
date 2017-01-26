@@ -11,5 +11,7 @@ return array(
 	'contributions' => ':name a contribué à :count projets.',
 	'contributions2' => 'Voici les auteurs avec le plus de contributions.',
 	'nocxsupport' => 'Ne supporte pas les TI-Nspire CX',
-	'noclsupport' => 'Ne supporte pas les TI-Nspire non-CX'
+	'noclsupport' => 'Ne supporte pas les TI-Nspire non-CX',
+    'compatible' => 'compatible',
+    'contributions3' => 'Contributions'
 );
