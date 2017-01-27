@@ -31,7 +31,7 @@ class ProjectController extends \BaseController {
 		
 		$mostClicked = Cache::remember('mostClicked', $ttl, function()
 		{
-			return Project::with('authors','versions')
+			return Project::with('authors', 'versions', 'categories')
 					->whereExists(function($query)
 					{
 						$query->select(DB::raw(1))
@@ -44,10 +44,10 @@ class ProjectController extends \BaseController {
 					->take(3)
 					->get();
 		});
-		
+
 		$featured = Cache::remember('featured', $ttl, function()
 		{
-			return Project::with('authors','versions')
+			return Project::with('authors', 'versions', 'categories')
 					->orderBy('featured','desc')
 					->take(3)
 					->get();

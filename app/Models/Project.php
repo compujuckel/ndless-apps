@@ -20,7 +20,24 @@ class Project extends Eloquent {
 	
 	function getDeprecatedAttribute()
 	{
-		return $this->versions()->where('deprecated', '=', '0')->count() == 0;
+        $ttl = Config::get('cache.ttl');
+
+	    $versions = Cache::remember('versions', $ttl, function() {
+	        return DB::table('compatibility')
+                ->select('compatibility.project')
+                ->distinct()
+                ->join('ndless', 'ndless.id', '=', 'compatibility.version')
+                ->where('ndless.deprecated', '=', '0')
+                ->get();
+        });
+
+	    foreach($versions as $elem) {
+            if($elem->project == $this->id) {
+                return false;
+            }
+        }
+
+        return true;
 	}
 
 	function getClassicFormattedAttribute()

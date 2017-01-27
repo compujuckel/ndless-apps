@@ -27,7 +27,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('master.categories') }} <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								@foreach(Category::all()->sortBy('id') as $category)
+								@foreach(Cache::remember('categories', Config::get('cache.ttl'), function() { return Category::all()->sortBy('id'); }) as $category)
 								<li><a href="/categories/{{ $category->id }}">{{ Lang::choice("categories.{$category->id}",2) }}</a></li>
 								@endforeach
 							</ul>

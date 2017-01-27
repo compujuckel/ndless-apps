@@ -15,6 +15,8 @@ return [
 
 	'default' => env('CACHE_DRIVER', 'file'),
 
+    'ttl' => env('CACHE_TTL', 30),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Cache Stores

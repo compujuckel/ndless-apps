@@ -85,7 +85,7 @@ class AuthorController extends \BaseController {
 					->first()
 			)
 			->withProjects(
-				Author::findOrFail($id)->projects->sortBy(function($project) {
+				Author::with('projects', 'projects.categories', 'projects.versions', 'projects.authors')->findOrFail($id)->projects->sortBy(function($project) {
 					return strtolower($project->name);
 				})
 			);

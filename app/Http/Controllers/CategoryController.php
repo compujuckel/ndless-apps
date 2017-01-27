@@ -19,7 +19,7 @@ class CategoryController extends \BaseController {
 					->first()
 			)
 			->withProjects(
-				Category::findOrFail($id)->projects->sortBy(function($project) {
+				Category::with('projects.authors', 'projects.versions', 'projects.categories')->findOrFail($id)->projects->sortBy(function($project) {
 					return strtolower($project->name);
 				})
 			);
