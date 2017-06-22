@@ -30,9 +30,9 @@ class Authenticate {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next)
+	public function handle($request, Closure $next, $editor)
 	{
-		if ($this->auth->guest())
+		if ($this->auth->guest() || ($editor == 'editor' && !$this->auth->user()->editor))
 		{
 			if ($request->ajax())
 			{
@@ -40,7 +40,7 @@ class Authenticate {
 			}
 			else
 			{
-				return redirect()->guest('auth/login');
+				return redirect()->guest('login');
 			}
 		}
 

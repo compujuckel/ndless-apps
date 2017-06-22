@@ -3,7 +3,7 @@
 class ProjectController extends \BaseController {
 	public function __construct()
 	{
-		$this->middleware('auth', array(
+		$this->middleware('auth:editor', array(
 			'except' => array(
 				'index',
 				'show',
