@@ -30,7 +30,7 @@ class Authenticate {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $editor)
+	public function handle($request, Closure $next, $editor = '')
 	{
 		if ($this->auth->guest() || ($editor == 'editor' && !$this->auth->user()->editor))
 		{
